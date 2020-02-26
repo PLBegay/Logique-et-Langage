@@ -1,0 +1,430 @@
+
+\section{Déduction naturelle}
+
+\begin{frame}
+	\titre{Déduction naturelle}
+	
+	 Les tables de vérité, c'est une méthode de preuve solide, mais un peu bourrine et laborieuse\pause\newline
+	
+	Mais, plus gênant, les tables de vérité ne \textit{racontent pas d'histoire} : \pause le raisonnement - et sa construction - n'apparaissent pas. \pause Ce sont finalement plus des faits que des preuves\pause\newline
+	 
+	Une logique est livrée avec ses \textbf{systèmes déductifs}, cad des formalismes décrivant la construction de preuves\pause\newline
+	
+	En logique prop., les plus canoniques sont \textbf{La déduction à la Hilbert}, \textbf{Le calcul des séquents} et \textbf{La déduction naturelle}. C'est à ce dernier qu'on va s'intéresser
+	
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Déduction naturelle}
+	
+	 On introduit un nouveau symbole : $\vdash$\pause\newline
+	 
+	 $\phi_1, \phi_2 \dots, \phi_n \vdash \psi \equiv $ `Avec les hypothèses $\phi_1, \phi_2 \dots \phi_n$, on peut déduire $\psi$`\pause\newline
+	 
+	 Convention : on va en général appeler un ensemble d'hypothèses $\Gamma$\pause\newline
+	 
+	 $\Gamma, \phi \vdash \phi$ $\equiv$ `Avec un tas d'hypothèses, dont $\phi$, on peut déduire $\phi$` \pause : c'est l'\textbf{axiome}\pause\newline
+	 
+	 On va aussi avoir des règles qui ressemblent à ça :
+	 
+	 \begin{prooftree}
+\AxiomC{Prémisse 1}
+%\UnaryInfC{B}
+\AxiomC{Prémisse 2}
+\BinaryInfC{Conclusion}
+\end{prooftree}
+
+%Vous pouvez remarquer que les prémisses sont alignées au lieu d'être empilées (comme dans Port-Royal), on va très rapidement voir pourquoi ! 	
+	
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Déduction naturelle}
+	
+	Par exemple, la règle suivante : 
+	 \begin{prooftree}
+\AxiomC{$\Gamma \vdash \phi$}
+%\UnaryInfC{B}
+\AxiomC{$\Gamma \vdash \psi$}
+\BinaryInfC{$\Gamma \vdash (\phi \wedge \psi)$}
+\end{prooftree}
+
+\pause
+`Si on a une preuve $\phi$ à partir de $\Gamma$ et qu'on a une preuve de $\psi$ à partir de $\Gamma$, alors on a une preuve de ($ \phi \wedge \psi$) à partir de $\Gamma$`\pause\newline
+
+Cette règle s'appelle l'\textbf{introduction du $\wedge$} (ou $\wedge$-introduction)\pause\newline
+
+Vous pouvez remarquer que les prémisses sont alignées au lieu d'être empilées (comme dans Port-Royal), on va très rapidement voir pourquoi ! 	
+	
+
+%Vous pouvez remarquer que les prémisses sont alignées au lieu d'être empilées (comme dans Port-Royal), on va très rapidement voir pourquoi ! 	
+	
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Déduction naturelle}
+	
+	Règles duales : 
+	 \begin{prooftree}
+\AxiomC{$\Gamma \vdash (\phi \wedge \psi)$}
+%\UnaryInfC{B}
+\UnaryInfC{$\Gamma \vdash \phi$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash (\phi \wedge \psi)$}
+%\UnaryInfC{B}
+\UnaryInfC{$\Gamma \vdash \psi$}
+\end{prooftree}
+
+
+\pause
+
+`Si on a une preuve de $(\phi \wedge \psi)$ à partir de $\Gamma$, alors on a une preuve de $\phi$ (resp. $\psi$) à partir de $\Gamma$`. C'est les règles d'\textbf{élimination du $\wedge$} (ou $\wedge$-élimination)\pause\newline
+
+Intuitivement, ces deux règles disent qu'on peut \textit{perdre de l'information} : `si je sais que machin et truc, alors \textbf{en particulier} je sais que machin (ou truc)`
+	
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Déduction naturelle}
+	
+	Et cette règle un peu bizarre : 
+	 \begin{prooftree}
+\AxiomC{$\Gamma,\phi \vdash \psi$}
+%\UnaryInfC{B}
+\UnaryInfC{$\Gamma \vdash (\phi \rightarrow \psi)$}
+\end{prooftree}
+
+\pause
+`Si on a une preuve $\psi$ à partir de $\Gamma$ et $\phi$, alors on a une preuve de ($ \phi \rightarrow \psi$) à partir de $\Gamma$`\pause\newline
+
+Cette règle un peu absconce (c'est une nécessité technique du formalisme) s'appelle l'\textbf{introduction de la $\rightarrow$} (ou $\rightarrow$-introduction)\pause\newline
+
+On n'a pas encore vu toutes les règles, mais ce qu'on a nous suffit déjà à faire une preuve non-triviale : $ \vdash ((\phi \wedge \psi) \rightarrow (\psi \wedge \phi))$
+	
+
+%Vous pouvez remarquer que les prémisses sont alignées au lieu d'être empilées (comme dans Port-Royal), on va très rapidement voir pourquoi ! 	
+	
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	%\titre{Déduction naturelle}
+	
+	\only<1-3>{
+	 \begin{prooftree}
+\AxiomC{$(\phi \wedge \psi) \vdash (\phi \wedge \psi)$}
+\RightLabel{\textcolor{white}{$\wedge$-elimination}}
+\UnaryInfC{$(\phi \wedge \psi) \vdash \psi$}
+\AxiomC{$(\phi \wedge \psi) \vdash (\phi \wedge \psi)$}
+\RightLabel{\textcolor{white}{$\wedge$-elim}}
+\UnaryInfC{$(\phi \wedge \psi) \vdash \phi$}
+\RightLabel{\textcolor{white}{$\wedge$-intro}}
+\BinaryInfC{$(\phi \wedge \psi) \vdash (\psi \wedge \phi)$}
+%\UnaryInfC{B}
+\RightLabel{\textcolor{white}{$\rightarrow$-introduction}}
+\UnaryInfC{$ \vdash ((\phi \wedge \psi) \rightarrow (\psi \wedge \phi))$}
+\end{prooftree}}
+
+\only<4-5>{
+	 \begin{prooftree}
+
+\AxiomC{$(\phi \wedge \psi) \vdash (\phi \wedge \psi)$}
+\RightLabel{\textcolor{white}{$\wedge$-elimination}}
+\UnaryInfC{$(\phi \wedge \psi) \vdash \psi$}
+\AxiomC{$(\phi \wedge \psi) \vdash (\phi \wedge \psi)$}
+\RightLabel{\textcolor{white}{$\wedge$-elim}}
+\UnaryInfC{$(\phi \wedge \psi) \vdash \phi$}
+\RightLabel{\textcolor{white}{$\wedge$-intro}}
+\BinaryInfC{$(\phi \wedge \psi) \vdash (\psi \wedge \phi)$}
+%\UnaryInfC{B}
+\RightLabel{$\rightarrow$-introduction}
+\UnaryInfC{$ \vdash ((\phi \wedge \psi) \rightarrow (\psi \wedge \phi))$}
+\end{prooftree}
+}
+
+
+\only<6-7>{
+	 \begin{prooftree}
+
+\AxiomC{$(\phi \wedge \psi) \vdash (\phi \wedge \psi)$}
+\RightLabel{\textcolor{white}{$\wedge$-elimination}}
+\UnaryInfC{$(\phi \wedge \psi) \vdash \psi$}
+\AxiomC{$(\phi \wedge \psi) \vdash (\phi \wedge \psi)$}
+\RightLabel{\textcolor{white}{$\wedge$-elim}}
+\UnaryInfC{$(\phi \wedge \psi) \vdash \phi$}
+\RightLabel{$\wedge$-intro}
+\BinaryInfC{$(\phi \wedge \psi) \vdash (\psi \wedge \phi)$}
+%\UnaryInfC{B}
+\RightLabel{$\rightarrow$-introduction}
+\UnaryInfC{$ \vdash ((\phi \wedge \psi) \rightarrow (\psi \wedge \phi))$}
+\end{prooftree}
+}
+
+%\RightLabel{$\wedge$-elimination}
+
+\only<8>{
+	 \begin{prooftree}
+
+\AxiomC{$(\phi \wedge \psi) \vdash (\phi \wedge \psi)$}
+\RightLabel{$\wedge$-elimination}
+\UnaryInfC{$(\phi \wedge \psi) \vdash \psi$}
+\AxiomC{$(\phi \wedge \psi) \vdash (\phi \wedge \psi)$}
+\RightLabel{$\wedge$-elim}
+\UnaryInfC{$(\phi \wedge \psi) \vdash \phi$}
+\RightLabel{$\wedge$-intro}
+\BinaryInfC{$(\phi \wedge \psi) \vdash (\psi \wedge \phi)$}
+%\UnaryInfC{B}
+\RightLabel{$\rightarrow$-introduction}
+\UnaryInfC{$ \vdash ((\phi \wedge \psi) \rightarrow (\psi \wedge \phi))$}
+\end{prooftree}
+}
+\pause
+%
+
+En lisant à partir du bas :\vspace{0.14cm}\newline\pause
+On veut prouver `$(\phi \wedge \psi) \rightarrow (\psi \wedge \phi)$`. On ajoute donc $\phi \wedge \psi$ à notre ensemble d'hypothèses en utilisant la $\rightarrow$-introduction\pause\vspace{0.14cm}\newline\pause
+$(\psi \wedge \phi)$ est la conjonction de deux propositions, $\psi$ et $\phi$. On utilise donc la $\wedge$-introduction, qui impose de les prouver toutes les deux en utilisant le même jeu d'hypothèses\pause\vspace{0.14cm}\newline\pause
+Dans la branche gauche (resp. droite), on veut prouver $\psi$ (resp. $\phi$). Or, on a comme hypothèse `$\phi \wedge \psi$`, qui permet de prouver directement $\psi$ (resp. $\phi$) d'après la $\wedge$-élimination. On fait donc \textit{apparaître} cette hypothèse en utilisant l'axiome
+
+
+%Vous pouvez remarquer que les prémisses sont alignées au lieu d'être empilées (comme dans Port-Royal), on va très rapidement voir pourquoi ! 	
+	
+\end{frame}
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Déduction naturelle}
+	
+	Autres règles : 
+	 \begin{prooftree}
+\AxiomC{$\Gamma \vdash \phi$}
+%\UnaryInfC{B}
+\UnaryInfC{$\Gamma \vdash (\phi \vee \psi)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash \phi$}
+%\UnaryInfC{B}
+\UnaryInfC{$\Gamma \vdash (\psi \vee \phi)$}
+\end{prooftree}
+
+
+\pause
+
+`Si on a une preuve de $\phi$ à partir de $\Gamma$, alors on a une preuve de $(\phi \vee \psi)$ (resp. $(\psi \vee \phi)$) à partir de $\Gamma$`. C'est les règles d'\textbf{introduction du $\vee$} (ou $\vee$-élimination)\pause\newline
+
+Intuitivement, cette règle consiste à `brouiller les pistes`. `Si je sais que sous mes hypothèses machin est vrai, alors je sais que parmi machin et truc y aura au moins un de vrai, quel que soit truc`
+	
+\end{frame}
+
+%----------------------------------------
+\begin{frame}
+	\titre{Déduction naturelle}
+	
+	On a notamment vu la $\wedge$-introduction et élimination. Vu qu'on vient de regarder la $\vee$-introduction, vous devez vous douter qu'on va avoir \pause la $\vee$-élimination\pause\newline
+	
+	 \begin{prooftree}
+\AxiomC{$\Gamma \vdash (\phi \vee \psi)$}
+\AxiomC{$\Gamma,\phi \vdash \omega$}
+\AxiomC{$\Gamma,\psi \vdash \omega$}
+%\UnaryInfC{B}
+\TrinaryInfC{$\Gamma \vdash\omega$}
+\end{prooftree}
+
+
+\pause
+
+Celle-là est un peu ésotérique, mais en fait assez normale : \pause si on peut prouver qu'on a soit $\phi$, soit $\psi$ (soit les deux), et que dans les deux cas on a $\omega$, alors on a forcément ce dernier
+
+\end{frame}
+
+%----------------------------------------
+\begin{frame}
+	\titre{Déduction naturelle}
+	
+On a aussi vu plus haut la $\rightarrow$-introduction, il nous manque donc la $\rightarrow$-elimination :
+	
+	 \begin{prooftree}
+\AxiomC{$\Gamma \vdash (\phi \rightarrow \psi)$}
+\AxiomC{$\Gamma \vdash \phi$}%\UnaryInfC{B}
+\BinaryInfC{$\Gamma \vdash\psi$}
+\end{prooftree}
+
+
+\pause
+
+Celle-là, qu'on appelle aussi \textbf{modus ponens} (quand on est un peu snob) correspond à un raisonnement de type `Si il pleut la route est mouillée, et il pleut, donc la route est mouillée`.
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	%\titre{Déduction naturelle}
+Autre preuve : 	
+
+\only<1>{
+\scalebox{.48}{}
+\begin{scprooftree}{0.48}
+
+\AxiomC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash ((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega))$}
+\UnaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash (\psi \rightarrow \omega)$}
+\AxiomC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash ((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)) $}
+\UnaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash (\phi \rightarrow \psi) $}
+\AxiomC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash \phi $}
+\BinaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash \psi $}
+\BinaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash \omega$}
+\UnaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)) \vdash (\phi \rightarrow \omega)$}
+%\UnaryInfC{B}
+\UnaryInfC{$ \vdash (((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)) \rightarrow (\phi \rightarrow \omega))$}
+\end{scprooftree}
+}
+\pause
+\only<2->{
+
+\scalebox{.8}{}
+\begin{scprooftree}{0.8}
+\AxiomC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash ((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)) $}
+\UnaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash (\phi \rightarrow \psi) $}
+\AxiomC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash \phi $}
+\BinaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash \psi $}
+\end{scprooftree}
+
+\scalebox{.8}{}
+\begin{scprooftree}{0.8}
+
+\AxiomC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash ((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega))$}
+\UnaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash (\psi \rightarrow \omega)$}
+\AxiomC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash \psi $}
+\BinaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)),\phi \vdash \omega$}
+\UnaryInfC{$((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)) \vdash (\phi \rightarrow \omega)$}
+%\UnaryInfC{B}
+\UnaryInfC{$ \vdash (((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)) \rightarrow (\phi \rightarrow \omega))$}
+\end{scprooftree}
+}
+\pause 
+
+Note : une preuve de $\vdash \psi$, ça veut dire que $\phi$ est vraie sans la moindre hypothèse. On parle alors de \textbf{théorème}
+
+%Vous pouvez remarquer que les prémisses sont alignées au lieu d'être empilées (comme dans Port-Royal), on va très rapidement voir pourquoi ! 	
+	
+\end{frame}
+
+%----------------------------------------
+
+%----------------------------------------
+\begin{frame}
+	\titre{Déduction naturelle}
+	
+Courage, on a bientôt fini !
+	
+	 \begin{prooftree}
+\AxiomC{$\Gamma \vdash \bot $}
+\UnaryInfC{$\Gamma \vdash \phi$}
+\end{prooftree}
+
+
+\pause
+
+Celle-là, c'est l'\textbf{élimination du faux}. Si l'ensemble d'hypothèses $\Gamma$ permet de prouver le faux, c'est qu'il est incohérent, du coup autant en déduire n'importe quoi tant qu'on y est
+
+\end{frame}
+
+%----------------------------------------
+\begin{frame}
+	\titre{Déduction naturelle}
+	  
+	Petit dernier
+	
+	 \begin{prooftree}
+\AxiomC{$\Gamma, \neg \phi \vdash \bot $}
+\UnaryInfC{$\Gamma \vdash \phi$}
+\end{prooftree}
+
+
+\pause
+
+Celle-ci traduit \pause \textbf{le raisonnement par l'absurde} : si $\neg \phi$ fait \textit{bugger} l'ensemble d'hypothèses $\Gamma$, alors sa négation, cad $\phi$, est forcément vraie
+
+
+\end{frame}
+
+%----------------------------------------
+\begin{frame}
+	\titre{Déduction naturelle}
+	  
+	  Vous avez peut-être remarqué qu'un symbole de la logique prop. n'apparaît dans aucune des règles qu'on a vues \pause : en effet, on n'a pas croisé de $\leftrightarrow$\pause\newline
+	  
+	  En fait, les logiciens (qui sont à l'origine de la déduction naturelle) considèrent que $\phi \leftrightarrow \psi$ ne fait pas vraiment partie de logique prop., et qu'il ne s'agit que d'un raccourci pour $((\phi \rightarrow \psi) \wedge (\psi \rightarrow \phi))$ (ce qui se vérifie facilement avec des tables de vérité)\pause\newline
+	  
+	  Autre détail : $\neg \phi$ est également un \textit{raccourci} (on parle de `sucre syntaxique`) pour $(\phi \rightarrow \bot)$
+	  
+
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Déduction naturelle}
+	  
+	La déduction naturelle a deux propriétés fort intéressantes vis-à-vis de la logique propositionnelle : \textbf{la correction} et \textbf{la complètude}\pause\newline
+	
+	La \textbf{correction}, ça veut dire que toute propriété prouvée dans e système qu'on vient de voir est vraie selon la logique prop. (cad que si on en fait la table de vérité, on obtient une tautologie). \pause\newline
+	
+	Bon, encore heureux quelque part. D'ailleurs la preuve est un peu trop technique pour qu'on la fasse, mais au fond putôt simple
+	
+	
+	  
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Déduction naturelle}
+	  
+	La \textbf{complètude}, c'est que toute proposition qui est une tautologie (selon la logique prop) peut être prouvée en déduction naturelle \pause (preuve vraiment pas cool)\pause\newline
+	
+	\textbf{Correction} $\equiv$ (prouvable $\rightarrow$ vrai)\newline
+	\textbf{Complètude} $\equiv$ (vrai $\rightarrow$ prouvable)\newline\pause
+	
+	Du coup, on peut construire sereinement l'entièreté des raisonnements valides \underline{en logique propositionnelle} avec même pas 10 règles, qu'on combine autant que besoin (cf la preuve homérique du théorème des 4 couleurs)\pause\newline
+	
+	Mais pourquoi s'embêter avec ça quand on peut tout vérifier avec une table de vérité ? \pause (sinon la beauté du geste)
+		  
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Déduction naturelle}
+	   
+	  Vérification / recherche (automatisable) de preuve\newline\pause
+	  
+	  Correspondance preuves / programmes\newline\pause
+	  
+	  Extension à logique du premier ordre
+	  
+	  %Une raison très concrète : les tables de vérité ça ne marche que avec un nombre fini de propositions atomiques (sinon le tableau est lui-même infini et on n'est pas trop avancé). \pause En logique prop ça sera toujours le cas (la syntaxe autorise les propositions arbitrairement grandes mais pas infinies)\pause, mais comme on a commencé à le voir, c'est une logique trop faible pour exprimer tout un tas de choses\pause\newline
+	  
+	 % On va donc s'intéresser à la logique du premier ordre, extension fondamentale de la logique prop., dans laquelle les tables de vérité ne nous seront plus d'aucune aide. \pause Il y aura évidemment un équivalent (`faut bien définir formellement la notion de vérité), mais c'est encore pire que la déduction naturelle (qui sera elle-même adaptée pour conserver la complétude)\newline\pause
+	  
+	  %Pourquoi n'aura-t-on pas besoin de modifier la déduction naturelle pour conserver la correction ?
+
+\end{frame}
+
+%----------------------------------------

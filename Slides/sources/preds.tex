@@ -1,0 +1,1020 @@
+\section{Logique du premier ordre}
+
+
+\begin{frame}
+	\titre{Concept de prédicat}
+	
+Modélisation de `Jules mange et Jade dort` : $(P \wedge Q)$\newline
+
+`Stéphane range et Elsa court` : $(R \wedge S)$\newline\pause
+
+Les deux phrases ont une structure commune ($X$ et $Y$) qu'on retrouve dans les formules\newline
+
+
+\end{frame}
+
+\begin{frame}
+	\titre{Concept de prédicat}
+	
+Modélisation de `Stéphane dort` : P\newline
+
+Modélisation de `Jade dort` : Q\newline\pause
+
+Modélisation de `Stéphane déteste Jade` : R\newline
+
+Modélisation de `Jade déteste Stéphane` : S\newline\pause
+
+Des remarques ? \pause\newline
+
+Il y a des similitudes entre les phrases qu'on ne retrouve pas entre les propositions cette fois
+
+\end{frame}
+
+\begin{frame}
+	\titre{Concept de prédicat}
+	
+	On retrouve le même problème dans les syllogismes :\newline
+	
+	\only<1-2>{\begin{tabular}{lr}
+Si un élève est brillant, il ne vient pas en cours & \textcolor{white}{$P \rightarrow \neg Q$}\\
+Jean-Michel est un élève brillant& \textcolor{white}{$R\textcolor{white}{\rightarrow \neg Q}$}\\
+\hline
+Jean-Michel ne vient pas en cours & \textcolor{white}{$\neg Q'$}\\
+\end{tabular}}
+\pause
+	\only<3->{\begin{tabular}{lr}
+Si un élève est brillant, il ne vient pas en cours & $P \rightarrow \neg Q$\\
+Jean-Michel est un élève brillant& $R\textcolor{white}{\rightarrow \neg Q}$\\
+\hline
+Jean-Michel ne vient pas en cours & $\neg Q'$\\
+\end{tabular}}\newline
+
+
+
+\textcolor{white}{lol}
+
+Le syllogisme a bien l'air valide\newline
+\pause
+
+La première prémisse parle de tous les élèves, et donc en particulier de Jean-Michel, mais on n'arrive pas à le faire apparaître au niveau de la logique propositionnelle
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Concept de prédicat}
+	
+	Les propositions ne sont pas assez \textit{fines}, ou modulaires : on n'a pas le concept de \textit{phrase à trous} (ie. `[un sujet] dort`, ou `[un sujet] déteste [un COD]`)\newline
+	
+	En fait, ce qu'on voudrait c'est quelque part les notions de base de grammaire !\pause\newline
+	
+	On introduit donc les \textbf{prédicats}, qui sont des propriétés qui s'appliquent à des \textbf{arguments}. \newline
+
+ Par exemple, $D(x) \equiv $ `$x$ a la propriété de dormir` $\equiv$ `$x$ dort`
+	
+	%On ne veut pas pour autant \textit{jeter} ce qu'on a vu en logique propositionnelle : les différents connecteurs semblent quand même (plus ou moins, je vous l'accorde) correspondre à des constructions classiques de la langue naturelle. \pause\newline 
+	
+	%On va donc raffiner (et étendre) ce qu'on a vu jusqu'ici.
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Concept de prédicat}
+	
+ Par exemple, $D(x) \equiv $ `$x$ a la propriété de dormir` $\equiv$ `$x$ dort`
+	 
+	 \only<1>{
+	 \textcolor{white}{On a alors} \newline
+	 
+	 	\begin{tabular}{lr}
+\textcolor{white}{$D(Stephane) \equiv $'Stéphane dort''}  & \textcolor{white}{$D(Jade) \equiv $'Jade dort''} \\
+&\\
+\end{tabular}}
+
+	 \only<2>{
+	 On a alors \newline
+	 
+	 	\begin{tabular}{lr}
+$D(Stephane) \equiv $'Stéphane dort'  & $D(Jade) \equiv $'Jade dort' \\
+ & \\
+\end{tabular}
+	}
+	
+	\only<3->{
+	 On a alors \newline
+	 
+	 	\begin{tabular}{lr}
+$D(s) \equiv $'Stéphane dort'  & $D(j) \equiv $'Jade dort' \\
+ &  \\
+\end{tabular}
+	 }\pause\pause
+	
+	De même, soit $G(x) \equiv $'$x$ est grand', alors on a \newline
+	
+	 \begin{itemize}
+	 \item $G(s) \equiv $'Stéphane est grand' 
+	\item $G(j) \equiv $'Jade est grande' 
+	\item \textcolor{white}{lol}
+	\end{itemize}
+	
+	\pause
+	
+	Notez l'accord pour Jade : un prédicat est une propriété (au niveau abstrait), pas une suite de caractères figée dans le marbre
+	
+	%On ne veut pas pour autant \textit{jeter} ce qu'on a vu en logique propositionnelle : les différents connecteurs semblent quand même (plus ou moins, je vous l'accorde) correspondre à des constructions classiques de la langue naturelle. \pause\newline 
+	
+	%On va donc raffiner (et étendre) ce qu'on a vu jusqu'ici.
+
+\end{frame}
+
+\begin{frame}
+	\titre{Concept de prédicat}
+	
+	Un prédicat, comme un verbe, peut avoir plusieurs arguments. Soit par exemple $H(x,y) \equiv $'$x$ déteste $y$'. On a alors \newline
+	
+	 \begin{itemize}
+	 \item $H(s,j) \equiv $'Stéphane déteste Jade'
+	\item $H(j,s) \equiv $'Jade déteste Stéphane'
+	\item \textcolor{white}{lol}
+	\end{itemize}
+	
+	 \pause
+	 	
+	Notez que l'ordre des arguments a son importance !
+	
+	\pause
+	
+	Autre exemple : soit $S(x,y,z) \equiv $'$x$ a vendu $y$ à $z$'. On a alors \newline
+		
+		 \begin{itemize}
+	 \item $S(j,s,e) \equiv $'Jade a vendu Stéphane à Elsa'
+	 \item \textcolor{white}{lol}
+		\end{itemize}\pause
+		
+	Attention, les prédicats prennent des \underline{individus} au sens large en argument, ça inclut des objets
+	%On ne veut pas pour autant \textit{jeter} ce qu'on a vu en logique propositionnelle : les différents connecteurs semblent quand même (plus ou moins, je vous l'accorde) correspondre à des constructions classiques de la langue naturelle. \pause\newline 
+	
+	%On va donc raffiner (et étendre) ce qu'on a vu jusqu'ici.
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Concept de prédicat}
+	
+	 Attention bis, les prédicats ne remettent pas en cause tout ce qu'on a vu en logique propositionnelle !  Les différents connecteurs semblent quand même (plus ou moins, je vous l'accorde) correspondre à des constructions classiques de la langue naturelle. \pause\newline
+	 
+	 Par exemple, `Stéphane et Jade se détestent mutuellement` $\equiv (H(s,j) \wedge H(j,s))$\pause\newline
+	 
+	 Les prédicats sont un \textit{raffinement} de la logique propositionnelle : on va \textit{étendre} le langage en rajoutant des symboles 
+	 
+\end{frame}
+
+
+\begin{frame}
+	\titre{Intégration des quantifications}
+	
+	On a réglé une partie des problèmes, mais il reste ça :\newline
+	
+	\only<1>{
+	\begin{tabular}{lr}
+Si un élève est brillant, & \\
+il ne vient pas en cours & \\
+Jean-Michel est un élève brillant& \\
+\hline
+Jean-Michel ne vient pas en cours & \\
+\end{tabular}\pause\newline
+}\pause
+	\only<2->{
+	\begin{tabular}{lr}
+Si un élève est brillant, & \\
+il ne vient pas en cours & $((E(x)\wedge B(x)) \rightarrow \neg C(x))$\\
+Jean-Michel est un élève brillant& $(E(j)\wedge B(j))\textcolor{white}{\rightarrow \neg Qqzdq}$\\
+\hline
+Jean-Michel ne vient pas en cours & $\neg C(j)	$\\
+\end{tabular}\pause\newline
+}
+\textcolor{white}{lol}
+
+A comparer avec :\newline
+
+\only<1-3>{
+	\begin{tabular}{lr}
+Si Thomas pleure, & \\
+au moins un élève est brillant & \\
+Thomas pleure& \\
+\hline
+Au moins un élève est brillant & \\
+\end{tabular}\newline
+}
+
+\only<4->{
+	\begin{tabular}{lr}
+Si Thomas pleure, & \\
+au moins un élève est brillant & $(P(t) \rightarrow (E(x)\wedge B(x))) $\\
+Thomas pleure& $P(t)\textcolor{white}{\rightarrow (E(x)\wedge B(xsk}$\\
+\hline
+Au moins un élève est brillant & $(E(x) \wedge B(x))	$\\
+\end{tabular}\newline
+}
+\textcolor{white}{lol}
+
+
+
+\end{frame}
+
+\begin{frame}
+	\titre{Intégration des quantifications}
+	
+	
+	\begin{tabular}{lr}
+Si un élève est brillant, & \\
+il ne vient pas en cours & $((E(x)\wedge B(x)) \rightarrow \neg C(x))$\\
+Jean-Michel est un élève brillant& $(E(j)\wedge B(j))\textcolor{white}{\rightarrow \neg Qqzdq}$\\
+\hline
+Jean-Michel ne vient pas en cours & $\neg C(j)	$\\
+\end{tabular}\pause\newline
+
+\textcolor{white}{lol}
+
+Ce syllogisme a l'air pas mal, à condition que le $x$ soit compris comme `n'importe quel $x$`
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Intégration des quantifications}
+	
+
+	\begin{tabular}{lr}
+Si Thomas pleure, & \\
+au moins un élève est brillant & $(P(t) \rightarrow (E(x)\wedge B(x))) $\\
+Thomas pleure& $P(t)\textcolor{white}{\rightarrow (E(x)\wedge B(xsk}$\\
+\hline
+Au moins un élève est brillant & $(E(x) \wedge B(x))	$\\
+\end{tabular}\pause\newline
+
+\textcolor{white}{lol}
+
+A l'inverse, ici ça marche si seulement $x$ est compris comme `un $x$ précis`. \pause\newline
+
+On va donc devoir être un peu plus précis en écrivant les propositions pour dire quel \textit{type} de $x$ (ou $y$, ou $z$ ...) on est en train d'utiliser. Cette extension, combinée à la notion de prédicat, va nous amener à ce qu'on appelle la \textbf{logique du premier ordre} (parfois appelée logique des prédicats)
+
+\end{frame}
+
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{L'alphabet++}
+	
+	Les seuls \textbf{symboles} utilisés en logique du premier ordre sont :\newline\pause
+	
+	\begin{description}[labelindent=5pt,style=multiline,leftmargin=1.5in]
+		 \setlength\itemsep{1.2em}
+		 
+		 \item[Constantes] $j, s, t$ etc, les individus du monde\pause
+		 \item[Prédicats] $P, Q, R$ etc, les propriétés considérées\pause
+		 \item[Les connecteurs] $\neg$, $\vee, \wedge, \rightarrow, \leftrightarrow$
+		 \item[Parenthèses] ( et )\pause
+		 \item[\textbf{Quantificateurs}] $\forall$ et $\exists$\pause
+		 \item[Variables] $x$, $y$, $z$ etc, les classiques
+		 	\end{description}
+\end{frame}
+
+
+
+
+\begin{frame}
+	\titre{La syntaxe++}
+	
+	 Les formules bien formées de la logique du premier ordre (FOL) peuvent se construire \underline{\textbf{uniquement}} via les règles suivantes :\newline
+	
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}
+		 
+		 \item[Prédicats] Si $P$ est un prédicat et $a_1,a_2,...,a_n$ sont des constantes ou des variables, $P(a_1,...,a_n)$ est dans FOL \pause
+		 \item[Connecteurs] Si $\phi$ et $\psi$ sont dans FOL, alors $(\phi \wedge \psi), (\phi \vee \psi), (\phi \rightarrow \psi)$ et $(\phi \leftrightarrow \psi)$ et $\neg \phi$ aussi\pause
+		 \item[Quantifications] Si $\phi$ est dans FOL et $x$ une variable, alors $\forall x. \phi$ et $\exists x. \phi$ sont dans FOL
+		 	\end{description}
+	\end{frame}
+
+
+
+\begin{frame}
+	\titre{La syntaxe++}
+	 
+	 Exemple de formule avec quantificateur (ou `formule quantifiée`) : $\forall x. P(x)$\pause\newline
+	 
+	 Son arbre :	  $\Tree[.{$\forall$} x [.P x ] ]$\pause\newline
+	 	
+	 	De façon générale, un quantificateur a deux descendants : à gauche la variable, et à droite la formule qu'il quantifie. 
+	 
+      
+	\end{frame}
+\begin{frame}
+	\titre{La syntaxe++}
+	 
+	 Autre exemple : $\forall x. \exists y. (H(x,y) \wedge H(y,x))$\pause\newline
+	 
+	 Son arbre : 	  $\Tree[.{$\forall$} x [.{$\exists$} y [.{$\wedge$} [.{$H$} x y ] [.{$H$} y x ] ] ] ]$\pause\newline
+	 	
+	 Chaque prédicat va avoir autant de descendants qu'il a d'arguments 
+      
+	\end{frame}
+
+
+
+
+\begin{frame}
+	\titre{La syntaxe++}
+	 
+	Attention, les quantificateurs peuvent être \textit{sous} les connecteurs classiques : $(\forall x. \exists y. (H(x,y) \wedge H(y,x))) \wedge (\exists z. P(z))$\pause
+	 
+	 Son arbre :    $\Tree[.{$\wedge$} [.{$\forall$} x [.{$\exists$} y [.{$\wedge$} [.{$H$} x y ] [.{$H$} y x ] ] ] ] [.{$\exists$} z [.{$P$} z ] ] ]$
+	 	
+      
+	\end{frame}
+	
+	
+
+\begin{frame}
+	\titre{La sémantique++ }
+	 
+	 On a déjà vu que $P(x) \equiv$ `$x$ a la propriété P` (par exemple, Stéphane est une pourriture)\pause\newline
+	 
+	 $\forall x. \phi \equiv$ $\phi$ est vraie pour toute instance de $x$ $\equiv$ je peux reprendre $\phi$ en remplaçant $x$ par n'importe quel \textit{individu}, et j'obtiendrai une proposition vraie\pause\newline
+	 
+	 Exemple : $\forall x. M(x) \equiv$ tout le monde meurt\pause\newline
+	 
+	 $\forall x. \forall y. H(x,y) \equiv$ \pause pour tout individu $x$, il est vrai que pour tout individu $y$, $x$ déteste $y$ $\equiv$ \pause tout le monde déteste tout le monde
+      
+	\end{frame}
+	
+
+\begin{frame}
+	\titre{La sémantique++ }
+	 
+	$\exists x. \phi \equiv$ $\phi$ est vraie pour au moins une instance de $x$ $\equiv$ il existe au moins un individu par lequel je peux remplacer $x$ pour rendre $\phi$ vraie\pause\newline
+	
+	$\exists x. \neg M(x) \equiv$ \pause il existe quelqu'un qui ne meurt pas (qui est immortel)\pause\newline
+	
+	$\forall x. \exists y. H(x,y) \equiv$ \pause pour tout individu $x$, il existe un individu $y$ tel que $x$ déteste $y$ $\equiv$ \pause toute personne a quelqu'un qu'elle déteste\pause\newline
+	
+	$\exists x. \forall y. H(x,y) \equiv$ \pause il existe un individu $x$ tel que pour tout individu $y$, $x$ déteste $y$ $\equiv$ \pause il existe quelqu'un qui déteste tout le monde \pause (y compris lui-même d'ailleurs)
+
+	\end{frame}
+	
+	
+	
+%
+%\begin{frame}
+%	\titre{Quantificateurs et ambiguïté}
+%
+%	Attention aux formules ambiguës ! $\forall x. M(x) \rightarrow Q(x)$, ça peut être\newline\pause
+%
+%
+%	\begin{tabular}{cc|cc}
+%	 $(\forall x. M(x)) \rightarrow Q(x)$ & \textcolor{white}{lol}& \textcolor{white}{lol} & $\forall x. (M(x) \rightarrow Q(x))$ \\
+%\Tree[.{$\rightarrow$} [.{$\forall$} x [.M x ] ] [.Q x ] ] & \textcolor{white}{lol}& \textcolor{white}{lol} & \Tree[.{$\forall$} x [.{$\rightarrow$} [.M x ] [.Q x ] ] ]\\
+%\end{tabular}
+%\pause
+%\textcolor{white}{Ledfs} Les règles de syntaxe n'interdisent pas le fait d'avoir des variables \textit{libres}, comme dans la première interprétation de la formule !
+%
+%\end{frame}
+%
+%
+%	
+%\begin{frame}
+%	\titre{Rappel}
+%	
+%	 Les formules bien formées de la logique du premier ordre (FOL) peuvent se construire \underline{\textbf{uniquement}} via les règles suivantes :\newline
+%	
+%	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+%		 \setlength\itemsep{1.4em}
+%		 
+%		 \item[Prédicats] Si $P$ est un prédicat et $a_1,a_2,...,a_n$ sont des constantes ou des variables, $P(a_1,...,a_n)$ est dans FOL 
+%		 \item[Connecteurs] Si $\phi$ et $\psi$ sont dans FOL, alors $(\phi \wedge \psi), (\phi \vee \psi), (\phi \rightarrow \psi)$ et $(\phi \leftrightarrow \psi)$ et $\neg \phi$ aussi
+%		 \item[Quantifications] Si $\phi$ est dans FOL et $x$ une variable, alors $\forall x. \phi$ et $\exists x. \phi$ sont dans FOL
+%		 	\end{description}
+%	\end{frame}
+%
+%	
+
+\begin{frame}
+	\titre{Quantificateurs et ambiguïté}
+
+	$\forall x. S(x) \rightarrow \forall x. H(x)$, c'est \newline
+
+
+	\begin{tabular}{ccccc}
+\Tree[.{$\rightarrow$} [.{$\forall$} x [.S x ] ] [.{$\forall$} x [.H x ] ] ] & \textcolor{white}{lol}& ou& \textcolor{white}{lol} & \Tree[.{$\forall$} x [.{$\rightarrow$} [.S x ] [.{$\forall$} x [.Q x ] ] ] ]\\
+\end{tabular}
+? \\
+
+\pause
+Celle de gauche (cf. les règles de syntaxe)\\ \pause
+
+Notez qu'on peut utiliser plusieurs fois la même variable dans une formule
+
+\end{frame}
+
+
+	
+\begin{frame}
+	\titre{Portée de variables}
+
+Soient les fonctions $f(x) = 3x + 2$ et $g(x) = 5x - 4$\pause\newline
+
+Les occurrences de $x$ avant le `et` et celles qui viennent après n'ont rien à voir \pause : le \textit{domaine} du premier $x$ c'est la fonction $f$, tandis que le deuxième est cantonné à la fonction $g$\pause\newline
+
+Plus généralement, quand on introduit une fonction quelconque $f(x) = machin$, la \textbf{portée} de $x$, c'est `machin`, et tout $x$ qu'on croiserait ailleurs n'a rien à voir.\pause\newline
+
+La notion de \textbf{portée} existe aussi en FOL, avec les quantificateurs qui remplacent les fonctions
+
+\end{frame}
+
+
+	
+\begin{frame}
+	\titre{Portée de variables}
+
+Soit la formule $(\forall x. S(x) \rightarrow \forall x. H(x))$. \pause Elle n'est pas plate, mais dispose d'une \textbf{structure hiérarchique}, à savoir son arbre syntaxique\pause\newline
+
+L'arbre nous permet de déterminer précisément le domaine, ou \textbf{portée}, d'une variable : c'est sa soeur et la descendance de cette dernière\pause, c'est-à-dire la sous-formule liée au quantificateur qui introduit la variable en question\pause\newline
+
+Dans la formule ci-dessus, le $x$ introduit par le premier (resp. le deuxième) $\forall$ a comme portée $S(x)$ (resp. $H(x)$). \pause Le $x$ de $H(x)$ n'a \underline{rien} à voir avec celui de $S(x)$ (comme dans les deux fonctions de la \textit{slide} précédente)
+
+\end{frame}
+
+
+	
+\begin{frame}
+	\titre{Portée de variables}
+
+Cette notion de portée se retrouve dans la traduction de la formule :
+\vspace{2mm}
+\begin{itemize}
+\item[] $S(x) \equiv$ `$x$ est sympa`\pause
+\item[$\Rightarrow$] $\forall x. S(x) \equiv$ `Tout $x$ est sympa` $\equiv$ `Tout le monde est sympa`\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] $H(x) \equiv$ `$x$ est Heureux`\pause
+\item[$\Rightarrow$] $\forall x. H(x) \equiv$ `Tout $x$ est heureux` $\equiv$ `Tout le monde est heureux`\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[$\Rightarrow$] $(\forall x. S(x) \rightarrow \forall x. H(x)) \equiv$ `Si tout le monde est sympa, alors tout le monde est heureux`\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item Les $x$ ont déjà été \textit{consommés} au moment de la \textit{jointure} (par $\rightarrow$) de $\forall x. S(x)$ et $\forall x. H(x)$
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Quantificateurs et ambiguïté}
+
+	De même, $\forall x. M(x) \rightarrow Q(x)$, c'est\newline
+
+
+	\begin{tabular}{ccccc}
+\Tree[.{$\rightarrow$} [.{$\forall$} x [.M x ] ] [.Q x ] ] & \textcolor{white}{lol}& ou & \textcolor{white}{lol} & \Tree[.{$\forall$} x [.{$\rightarrow$} [.M x ] [.Q x ] ] ]\\
+\end{tabular}
+? \\
+
+\textcolor{white}{ptdr}\\
+\pause
+Celle de gauche. \pause Notez que les règles de syntaxe n'interdisent pas le fait d'avoir des variables \textit{libres}, càd pas sous un quantificateur
+
+\end{frame}
+
+
+
+%
+%
+%\begin{frame}
+%	\titre{Quantificateurs et ambiguïté}
+%
+%	Attention aux formules ambiguës ! $\forall x. A(x,c) \wedge B(x,c) \rightarrow M(c,x)$, ça peut être\newline\pause 
+%\begin{itemize}
+%\item[] $(\forall x. A(x,c)) \wedge (B(x,c) \rightarrow M(c,x))$
+%\item[] $((\forall x. A(x,c)) \wedge B(x,c)) \rightarrow M(c,x)$
+%\item[] $((\forall x. A(x,c) \wedge B(x,c))) \rightarrow M(c,x)$
+%\item[] $\forall x. ((A(x,c) \wedge B(x,c)) \rightarrow M(c,x))$
+%\item[] $\forall x. (A(x,c) \wedge (B(x,c) \rightarrow M(c,x)))$
+%\end{itemize}
+%\end{frame}
+%%	
+%
+%\begin{frame}
+%	\titre{Quantificateurs et ambiguïté}
+%
+%Si vous suivez \textbf{\underline{strictement}} les règles de syntaxe et mettez bien une paire de parenthèses à chaque fois que vous introduisez un connecteur binaire ($\wedge$, $\vee$, $\rightarrow$ ou $\leftrightarrow$), la non-ambiguïté des formules obtenues est garantie \pause (par contre c'est un peu chiant et lourd)\pause\newline
+%
+%Si vous vous sentez vraiment à l'aise avec tout ça, pas besoin d'être aussi rigoureux, mais attention aux ambiguïtés (qui peuvent parfois être fort vicieuses !)
+%
+%\end{frame}
+
+
+\begin{frame}
+	\titre{Notion de prédicat atomique}
+
+	Souvenez-vous des propositions atomiques en logique prop : on ne voulait pas, par exemple, de P $\equiv$ `Jules et Elsa sont en vacances`, parce qu'on pouvait la décomposer en `Jules est en vacances` et `Elsa est en vacances` et les relier via les connecteurs de la logique prop.\newline\pause
+	
+	Pareil pour `Jules ou Elsa est en vacances`, `Si Jules est en vacances, alors Elsa aussi` etc ...\pause\newline
+	
+	Ben c'est la même pour les prédicats : on ne veut pas mettre dedans des trucs qui pourraient être traités directement par la logique du premier ordre.
+	
+	
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Notion de prédicat atomique}
+On ne va pas donc poser $K(x) \equiv$ `$x$ a tué \textcolor{red}{quelqu'un}`, mais $K(x,y) \equiv $ `$x$ a tué $y$`\pause\newline
+
+A l'aide de $\exists$, on peut retrouver `$x$ a tué quelqu'un` $\equiv$ $\exists y. K(x,y)$\pause\newline
+
+On peut alors aussi définir 
+\begin{itemize}
+\item[]`$x$ n'a tué personne` $\equiv \neg \exists y. K(x,y)$,  
+\item[]`$x$ a tué tout le monde` $\equiv \forall y. K(x,y)$,  
+\item[]`$x$ [n'a pas [tué tout le monde]]` $\equiv \neg \forall y. K(x,y)$,  
+\end{itemize}
+\pause
+\vspace{0.3em}
+C'est plus économique (et élégant) que de définir 4 prédicats pour ces différentes propriétés !
+
+\end{frame}
+	
+	
+	
+
+\begin{frame}
+	\titre{Attention à la flèche (encore)}
+
+Est-ce que $\forall x. (P(x) \rightarrow Q(x))$ et $(\forall x. P(x) \rightarrow \forall x. Q(x))$ sont équivalentes ?\pause\newline
+
+Non ! La première dit que tout individu P est aussi Q (par exemple, que tou.te.s les brun.e.s portent des lunettes), \pause alors que la deuxième c'est `Si tout le monde est P, alors tout le monde est Q` (par exemple, `Si tout le monde est brun, alors tout le monde porte des lunettes`)\pause\newline
+
+Ce sont deux informations différentes. Avec les bruns et lunettes, elles sont par exemple $\bot/\top$ dans cette classe\pause\newline
+
+Petite énigme : peut-on avoir un univers qui rend la première phrase $\top$ et la seconde $\bot$, et pourquoi ?
+
+\end{frame}
+	
+	
+
+\begin{frame}
+	\titre{Notion de variable}
+
+Une variable, comme une constante, représente \textbf{\underline{un individu}}\pause\newline
+
+Par exemple, `tous les MIASHS ont blabla` \textbf{ne} se traduit \textbf{pas} comme\newline
+
+$\forall x. blabla(x)$ avec $x =$ les MIASHS\pause\newline
+
+Si vous voulez parler d'un \textit{groupe}, vous passez par la flèche :\newline
+
+$\forall x. (M(x) \rightarrow blabla(x))$ avec $M(x) \equiv$ $x$ est en MIASHS\pause\newline
+
+Le prédicat M sert de \textit{filtre}
+
+\end{frame}
+	
+
+\begin{frame}
+	\titre{Donkey sentences}
+
+Phrases de la forme `Si un fermier a un âne, il le bat` (bienvenue en linguistique ...)\pause\newline
+
+Pour simplifier, remplaçons `un fermier` par `Jules`. Prenons $A(x) \equiv $'$x$ est un âne', $P(x,y) \equiv $ `$x$ possède $y$` et $B(x,y) \equiv $'$x$ bat $y$'. Comment traduire la phrase en FOL ?\pause\newline
+
+\begin{itemize}
+\item[] $\exists x. ((A(x) \wedge P(j,x)) \rightarrow B(j,x))$ ?\pause
+\item[] $((\exists x. (A(x) \wedge P(j,x))) \rightarrow B(j,x))$ ?\pause
+\item[] $\exists x. ((A(x) \wedge P(j,x)) \wedge B(j,x))$ ?\pause
+\end{itemize}
+
+Aucune de ces modélisations ne marche, pourquoi ?
+
+\end{frame}
+	
+
+\begin{frame}
+	\titre{Donkey sentences}
+
+`Si Jules a un âne, il le bat`\newline
+
+En fait, la phrase est très trompeuse, puisqu'un ne s'en sortira pas avec une existentielle (sans négation en tout cas), contrairement à ce que le `un âne` peut laisser penser\pause\newline
+
+Il faut la voir pour ce qu'elle est : une généralisation (donc une $\forall$) déguisée. On peut en effet la reformuler comme `Jules bat tout âne qu'il a`, ou encore `Tout âne possédé par Jules est battu par ce dernier`\pause\newline
+
+La phrase se modélise alors en $\forall x. ((A(x) \wedge P(j,x)) \rightarrow B(j,x))$\pause\newline
+
+Remarque : pas cool à systématiser 
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Quantification et négation}
+
+Vous vous souvenez du carré ? \pause $\neg $ Tous les X sont Y $\equiv$ Au moins un X n'est pas Y, tout ça tout ça\pause\newline
+
+$\neg \forall x. P(x) \equiv $\pause $\exists x. \neg P(x)$\pause\newline
+
+Mais aussi $\neg$ Au moins un X est Y $\equiv$ Aucun X n'est Y \pause $\equiv$ Tous les X sont (non-Y)\pause\newline
+
+$\neg \exists x. P(x) \equiv $\pause $\forall x. \neg P(x)$\pause\newline
+
+Normalement, commencez à voir qu'en logique, négation et inversion font bon ménage
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Quantification et négation}
+
+On retrouve donc bien le carré d'opposition, mais la logique du premier ordre va nous permettre d'aller plus loin\pause\newline
+
+La négation de fait qu'une certaine propriété soit vraie pour tout élément de l'univers, c'est qu'elle soit fausse pour au moins un. \pause On traduit ça en $\neg \forall x. \phi \equiv \exists x. \neg \phi$\pause\newline
+
+De même, la négation de fait qu'une certaine propriété soit vraie au moins un élément de l'univers, c'est qu'elle soit fausse pour tous. \pause On traduit ça en $\neg \exists x. \phi \equiv \forall x. \neg \phi$\pause\newline
+
+Notez déjà que c'est bien plus général que ce qu'on a vu avec Port-Royal
+
+\end{frame}
+
+
+
+
+\begin{frame}
+	\titre{Quantification et négation}
+
+$\neg \forall x. \phi \equiv \exists x. \neg \phi$\newline
+$\neg \exists x. \phi \equiv \forall x. \neg \phi$\newline
+\pause
+Mais surtout, ça nous donne des règles de \textbf{calcul}. On peut par exemple reformuler (avec la négation la plus \textit{basse} possible) la formule suivante : 
+\begin{itemize}
+\item[] $\neg \forall x. \forall y. \exists z. ((P(z) \wedge Q(x,z)) \rightarrow \neg R(x,y,z))$\pause
+\item[$\equiv$] $\exists x. \neg \forall y. \exists z. ((P(z) \wedge Q(x,z)) \rightarrow \neg R(x,y,z))$\pause
+\item[$\equiv$] $\exists x. \exists y. \neg \exists z. ((P(z) \wedge Q(x,z)) \rightarrow \neg R(x,y,z))$\pause
+\item[$\equiv$] $\exists x. \exists y. \forall z. \neg ((P(z) \wedge Q(x,z)) \rightarrow \neg R(x,y,z))$\pause
+\item[$\equiv$] $\exists x. \exists y. \forall z. ((P(z) \wedge Q(x,z)) \wedge R(x,y,z))$\pause
+\end{itemize}
+Même plus besoin de réfléchir, c'est magique !
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Quantification et négation}
+
+Tout ça pour dire que $\neg \forall x. A(x,j)$, ça n'est pas `Personne n'aime Jules` !\pause\newline
+
+De façon générale, je vous conseille de faire \textit{descendre} les négations autant que possible pour comprendre / traduire des formules, c'est moins piégeux
+
+\end{frame}
+
+	
+
+
+\begin{frame}
+	\titre{Exercices - modélisation}
+
+
+\only<1->{`Tous les MIASHS ont peur de tous les blonds`}\pause\newline
+
+\begin{itemize}
+\item[] On part de $P(x,y) \equiv $ $x$ a peur de $y$\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] On veut la transformer en `x a peur de tous les blonds` : \pause
+\item[$\Rightarrow$] $\forall y. (B(y) \rightarrow P(x,y)) \equiv $ Pour tout $y$, si $y$ est blond, alors $x$ a peur de $y$ \pause $\equiv$ $x$ a peur de tous les blonds\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] On applique cette propriété à tous les MIASHS : \pause
+\item[$\Rightarrow$] $\forall x. (M(x) \rightarrow \forall y. (B(y) \rightarrow P(x,y))) \equiv  $ Pour tout $x$, si $x$ est un MIASHS, alors $x$ a peur de tous les blonds \pause $\equiv$ Tous les MIASHS ont peur de tous les blonds\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] Remarque : on aurait pu inverser les quantifications (`pour tout blond, pour tout MIASHS ...`)
+\end{itemize}
+%Tous les X ont peur de tous les Y
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Exercices - négation}
+
+Négation de `Tous les MIASHS ont peur de tous les blonds`\newline\pause
+
+On va chercher à \textit{calculer} (simplifier) 
+\begin{itemize}
+\item[] $\neg \forall x. (M(x) \rightarrow \forall y. (B(y) \rightarrow P(x,y)))$\pause
+\item[$\equiv$] $\exists x. \neg  (M(x) \rightarrow \forall y. (B(y) \rightarrow P(x,y)))$\pause
+\item[$\equiv$] $\exists x. (M(x) \wedge \neg \forall y. (B(y) \rightarrow P(x,y)))$\pause
+\item[$\equiv$] $\exists x. (M(x) \wedge \exists y. \neg (B(y) \rightarrow P(x,y)))$\pause
+\item[$\equiv$] $\exists x. (M(x) \wedge \exists y. (B(y) \wedge \neg P(x,y)))$\pause
+\item[$\equiv$] Il existe un MIASHS $x$ tel qu'il existe un blond $y$ tel que $x$ n'a pas peur de $y$\pause
+\item[$\equiv$] Au moins un MIASHS n'a pas peur d'au moins un blond
+\end{itemize}
+\end{frame}
+	
+\begin{frame}
+	\titre{Complément de modélisation}
+
+`Tous les espagnols aiment un film`\pause\newline
+
+Jusqu'ici, on a seulement vu des quantifications sur des gens, mais c'est censé être plus général que ça \pause : on quantifie sur des \textit{individus}, qui peuvent être des humains, mais aussi des chaises, des films, des pizzas etc\pause\newline
+
+On utilise donc des prédicats pour distinguer les différents \textit{types} d'individus : 
+\begin{itemize}
+\item $H(x) \equiv x $ est un être humain
+\item $C(x) \equiv x $ est une chaise
+\item $F(x) \equiv x $ est un film
+\item $P(x) \equiv x $ est une pizza\pause
+\item $(P(x) \wedge H(x)) \equiv x $ est une pizza humaine
+\end{itemize}
+
+\end{frame}
+	
+	
+\begin{frame}
+	\titre{Complément de modélisation}
+
+Plus tôt, on a traduit `Tout le monde aime quelqu'un (de potentiellement différent)` par 
+
+\begin{itemize}
+\item[] $\forall x. \exists y. A(x,y)$\pause
+\end{itemize}
+\vspace{1mm}
+En vrai, on aurait dû utiliser 
+\begin{itemize}
+\item[] $\forall x. (H(x) \rightarrow \exists y. (H(y) \wedge A(x,y)))$\pause
+\end{itemize}
+\vspace{3mm}
+On va essayer de s'y tenir à partir d'ici
+
+\end{frame}
+	
+	
+\begin{frame}
+	\titre{Exercices - modélisation}
+
+\only<1>{`Tous les espagnols aiment un film`}\pause
+\only<2->{`Tous les espagnols aiment un film (potentiellement différent)`}\pause\newline
+
+
+\begin{itemize}
+\item[] On part de $A(x,y) \equiv $ $x$ aime $y$\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] On veut appliquer ça à un film : \pause
+\item[$\Rightarrow$] $\exists y. (F(y) \wedge A(x,y)) \equiv $ Il existe $y$, tq $y$ est un film et $x$ aime $y$ \pause $\equiv$ $x$ aime un film\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] On applique cette propriété à tous les espagnols : \pause
+\item[$\Rightarrow$] $\forall x. (E(x) \rightarrow \exists y. (F(y) \wedge A(x,y))) \equiv  $ Pour tout $x$, si $x$ est un espagnol (donc humain), alors $x$ aime un film \pause $\equiv$ Tous les espagnols aiment un film (potentiellement différent)\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] Remarque : on \textbf{\underline{n'}}aurait \textbf{\underline{pas}} pu inverser les quantifications
+\end{itemize}
+\end{frame}
+	
+
+\begin{frame}
+	\titre{Exercices - modélisation}
+
+La formule `à l'envers`, c'est 
+\begin{itemize}
+\item[] $\exists x. (F(x) \wedge \forall y. (E(y) \rightarrow A(y,x)))$\pause
+\end{itemize}
+
+
+On a vu que $\exists x. \phi$ est vraie ssi on peut trouver un remplacement de $x$ qui rende $\phi$ vraie. \pause Pour que notre formule soit vraie, on doit pouvoir nommer un film, disons $f$, tel que 
+
+\begin{itemize}
+\item[] $\forall y. (E(y) \rightarrow A(y,f))$
+\end{itemize} 
+
+C'est à dire tel tous les espagnols aiment $f$. \pause La formule traduit donc `Tous les espagnols aiment un film (particulier)`
+
+\end{frame}
+	
+	
+\begin{frame}
+	\titre{Complément de modélisation}
+
+
+L'ordre des variables est important, car elles sont \textit{fixées} les unes par rapport aux autres \pause : dans la première formule, le film $y$ \underline{dépend} de l'espagnol $x$ qui a déjà été \textit{fixé}\pause\newline
+
+Retour sur la première formule :
+\begin{itemize}
+\item[] $\forall x. (E(x) \rightarrow \exists y. (F(y) \wedge A(x,y)))$\pause
+\end{itemize}
+
+On a vu que $\forall x. \phi$ est vraie ssi $\phi$ est vraie pour tout remplacement de $x$. \pause Cad que pour tout espagnol $e$, on doit satisfaire $\exists y. (F(y) \wedge A(e,y))$, cad trouver un film que \textbf{\underline{$e$}} aime\pause\newline
+
+Le film est choisi \underline{en fonction de l'espagnol}, ce qui n'était pas le cas dans la formule précédente, et autorise donc une situation où chacun aime un film différent
+
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Exercices - négations}
+
+Première interprétation :
+\begin{itemize}
+\item[] $\neg \forall x. (E(x) \rightarrow \exists y. (F(y) \wedge A(x,y)))$\pause
+\item[$\equiv$] $\exists x. \neg (E(x) \rightarrow \exists y. (F(y) \wedge A(x,y)))$\pause
+\item[$\equiv$] $\exists x. (E(x) \wedge \neg \exists y. (F(y) \wedge A(x,y)))$\pause
+\item[$\equiv$] $\exists x. (E(x) \wedge \forall y. \neg (F(y) \wedge A(x,y)))$\pause
+\item[$\equiv$] $\exists x. (E(x) \wedge \forall y. (\neg F(y) \vee \neg A(x,y)))$\pause
+\item[$\equiv$] $\exists x. (E(x) \wedge \forall y. (F(y) \rightarrow \neg A(x,y)))$\pause
+\item[$\equiv$] Il existe un espagnol $x$ tel que, pour tout $y$ qui est un film, $x$ n'aime pas $y$\pause
+\item[$\equiv$] Il existe un espagnol qui n'aime aucun film
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Exercices - négations}
+
+Deuxième interprétation :
+\begin{itemize}
+\item[] $\neg \exists x. (F(x) \wedge \forall y. (E(y) \rightarrow A(y,x)))$\pause
+\item[$\equiv$] $\forall x. \neg (F(x) \wedge \forall y. (E(y) \rightarrow A(y,x)))$\pause
+\item[$\equiv$] $\forall x. (\neg F(x) \vee \neg \forall y. (E(y) \rightarrow A(y,x)))$\pause
+\item[$\equiv$] $\forall x. (F(x) \rightarrow \neg \forall y. (E(y) \rightarrow A(y,x)))$\pause
+\item[$\equiv$] $\forall x. (F(x) \rightarrow \exists y. \neg (E(y) \rightarrow A(y,x)))$\pause
+\item[$\equiv$] $\forall x. (F(x) \rightarrow \exists y. (E(y) \wedge \neg A(y,x)))$\pause
+\item[$\equiv$] Pour tout film, il existe un espagnol qui ne l'aime pas\pause
+\item[$\equiv$] Aucun film ne plaît à tous les espagnols
+\end{itemize}
+\end{frame}
+	
+\begin{frame}
+	\titre{Quelques variantes cadeaux en plus}
+
+
+%pour tout x. il existe y. K(x,y) = Tout le monde a tué quelqu'un (de potentiellement différent)
+
+%pour tout x. il existe y. K(y,x) = Tout le monde s'est fait tuer par quelqu'un (de potentiellement différent)
+
+%il existe y. pour tout x. K(x,y) = Y a quelqu'un qui s'est fait tuer par tout le monde = tout le monde a tué la même personne
+
+%il existe y. pour tout x. K(y,x) = Y a quelqu'un qui a tué tout le monde (lui-compris)
+
+\begin{itemize}
+\item[] $\forall x. \exists y. K(x,y)$\pause
+\begin{itemize}
+\item[$\equiv$] Tout le monde a tué quelqu'un (de potentiellement différent)\pause
+\end{itemize}
+\item[] $\forall x. \exists y. K(y,x)$\pause
+\begin{itemize}
+\item[$\equiv$] Tout le monde s'est fait tuer par quelqu'un (de potentiellement différent)\pause
+\end{itemize}
+\item[] $\exists y. \forall x. K(x,y)$\pause
+\begin{itemize}
+\item[$\equiv$] Y a quelqu'un qui s'est fait tuer par tout le monde = tout le monde a tué la même personne\pause
+\end{itemize}
+\item[] $\exists y. \forall x. K(y,x)$\pause
+\begin{itemize}
+\item[$\equiv$] Y a quelqu'un qui a tué tout le monde (lui-compris (sacré chenapan))
+\end{itemize}
+\end{itemize}
+\end{frame}
+	
+
+
+\begin{frame}
+	\titre{Exercices - modélisation}
+
+\only<1>{`Jules a quelque chose à cacher à tout le monde`}\pause
+\only<2->{`Jules a un même truc à cacher à tout le monde`}\pause
+%Ambiguïté habituelle : même chose pour tout le monde ou non ? \pause On va dire que oui\pause\newline
+
+\begin{itemize}
+\item[] On part de $C(x,y,z) \equiv $ $x$ cache $y$ à $z$\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] Le sujet de la phrase est Jules, on passe donc à : \pause
+\item[$\Rightarrow$] $C(j,y,z) \equiv $ Jules cache $y$ à z\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] Le `cachage` se fait à tout le monde : \pause
+\item[$\Rightarrow$] $\forall z. (H(z) \rightarrow C(j,y,z)) \equiv  $ Jules cache $y$ à tout le monde\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] On introduit le truc caché par un $\exists$ : \pause
+\item[$\Rightarrow$] $\exists y. \forall z. (H(z) \rightarrow C(j,y,z)) \equiv  $ Jules cache un (même) truc à tout le monde (lui-compris)\pause
+\end{itemize}
+
+Remarque : si on \textit{abstrait} Jules, on obtient $\forall x. (H(x) \rightarrow \exists y. \forall z. (H(z) \rightarrow C(x,y,z))) \equiv $ Tout le monde a un (même) truc à cacher à tout le monde (soi-même compris)
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Exercices - négation}
+
+Calcul de la négation de `Jules a un même truc à cacher à tout le monde` :\pause
+
+\begin{itemize}
+\item[] $\neg \exists y. \forall z. (H(z) \rightarrow C(j,y,z))$\pause
+\item[$\equiv$] $\forall y. \neg  \forall z. (H(z) \rightarrow C(j,y,z))$\pause
+\item[$\equiv$] $\forall y. \exists z. \neg (H(z) \rightarrow C(j,y,z))$\pause
+\item[$\equiv$] $\forall y. \exists z. (H(z) \wedge \neg C(j,y,z))$\pause
+\item[$\equiv$] Pour toute chose, il existe une personne à qui Jules ne la cache pas\pause
+\item[$\equiv$] Il n'y a rien que Jules cache à tout le monde\pause
+\end{itemize}
+
+Autre interprétation laissée au lecteur
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Exercices - modélisation}
+
+Toute chaise jaune est gentille avec au moins une personne qui n'a tué personne\pause
+%Ambiguïté habituelle : même chose pour tout le monde ou non ? \pause On va dire que oui\pause\newline
+
+\begin{itemize}
+\item[] On part de $G(x,y) \equiv $ $x$ est gentil avec $y$\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] Schématiquement, la formule va être : 
+\item[] $\forall x. ($ChaiseJaune$(x) \rightarrow \exists y. ($ATuéPersonne$(y) \wedge G(x,y)))$\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] On traduit chaiseJaune(x) en : \pause $(C(x) \wedge J(x))$\pause
+\end{itemize}
+\vspace{1mm}
+\begin{itemize}
+\item[] Et ATuéPersonne(y) en :\pause 
+\item[] $\neg \exists z. (H(z) \wedge K(y,z))$\pause $\equiv \forall z. (H(z) \rightarrow \neg K(y,z))$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\titre{Exercices - modélisation}
+
+Toute chaise jaune est gentille avec au moins une personne qui n'a tué personne (on prend $A(x) \equiv (C(x) \wedge J(x)))$\newline
+%Ambiguïté habituelle : même chose pour tout le monde ou non ? \pause On va dire que oui\pause\newline
+
+On obtient alors 
+
+\begin{itemize}
+\item[] $\forall x. (A(x) \rightarrow \exists y. ((\forall z. (H(z) \rightarrow \neg K(y,z))) \wedge G(x,y)))$\pause
+\end{itemize}
+
+On peut maintenant faire facilement la négation :
+\begin{itemize}
+\item[] $\neg \textcolor{red}{\forall x.}  (A(x) \rightarrow \exists y. (\forall z. (H(z) \rightarrow \neg K(y,z))) \wedge G(x,y))$\pause
+\item[$\equiv$] $ \exists x. \neg (A(x) \textcolor{red}{\rightarrow} \exists y. (\forall z. (H(z) \rightarrow \neg K(y,z))) \wedge G(x,y)))$\pause
+\item[$\equiv$] $ \exists x. (A(x) \wedge \neg \textcolor{red}{\exists y.} (\forall z. (H(z) \rightarrow \neg K(y,z))) \wedge G(x,y)))$\pause
+\item[$\equiv$] $ \exists x. (A(x) \wedge \forall y. \neg (\forall z. (H(z) \rightarrow \neg K(y,z))) \textcolor{red}{\wedge} G(x,y)))$\pause
+\item[$\equiv$] $ \exists x. (A(x) \wedge \forall y. (\textcolor{red}{\neg} \forall z. (H(z) \rightarrow \neg K(y,z))) \textcolor{red}{\vee} \neg G(x,y)))$\pause
+\item[$\equiv$] $ \exists x. (A(x) \wedge \forall y. (\forall z. (H(z) \rightarrow \neg K(y,z))) \rightarrow \neg G(x,y)))$\pause
+\item[$\equiv$] Au moins une chaise jaune n'est gentille avec aucune personne qui n'a tué personne
+\end{itemize}
+\end{frame}
+
+
+
+	
+	

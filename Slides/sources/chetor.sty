@@ -1,0 +1,357 @@
+% PACKAGE CHETOR - pour écrire des maths et des présentations
+% Itsaka Rakotonirina, ENS Cachan, septembre 2014
+% Non destiné à la vente, tous droits réservés
+%
+%
+% Détails à propos des options possibles du package:
+%
+%	- par défaut: quelques fonctions de maths et mise en page
+%	- beamer: définit le thème, quelques fonctions + sommaire régulier
+%	- vierge: enlève toutes les fonctionnalité possibles
+%	- english: passe le document et les définitions en mode anglais (en 
+%	particulier, change le nom de quelques commandes)
+%	- blue: passe le thème beamer en bleu clair
+%	- black: passe le thème beamer en noir
+%	- red: passe le thème beamer en rouge bordeau (couleur par défaut)
+
+
+
+\NeedsTeXFormat{LaTeX2e}[1999/01/01]
+\ProvidesPackage{chetor}[05/02/2014]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% GESTION DES OPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newif\if@beamer \@beamerfalse
+\newif\if@nonvierge \@nonviergetrue
+\newif\if@nonbeamer \@nonbeamertrue
+\newif\if@english \@englishfalse
+\newif\if@french \@frenchtrue
+\newif\if@red \@redtrue
+\newif\if@blue \@bluefalse
+\newif\if@black \@blackfalse
+
+
+\DeclareOption{beamer}{\@beamertrue \@nonbeamerfalse}
+\DeclareOption{vierge}{\@nonviergefalse}
+\DeclareOption{french}{\@frenchtrue \@englishfalse}
+\DeclareOption{english}{\@frenchfalse \@englishtrue}
+\DeclareOption{blue}{\@bluetrue \@redfalse \@blackfalse}
+\DeclareOption{red}{\@redtrue \@bluefalse \@blackfalse}
+\DeclareOption{black}{\@blacktrue \@bluefalse \@redfalse}
+\DeclareOption*{}
+\ProcessOptions
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% LES PACKAGES UTILISÉS %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\RequirePackage[utf8]{inputenc}
+\if@english
+	\RequirePackage[english]{babel}
+\fi
+\if@french
+	\RequirePackage[french]{babel}
+\fi
+\if@nonbeamer
+	\RequirePackage[a4paper]{geometry}
+	\geometry{hscale=0.80,vscale=0.80,centering}
+\fi
+\RequirePackage[T1]{fontenc}
+\RequirePackage{amsmath}
+\RequirePackage{bbm}
+\RequirePackage{dsfont}
+\RequirePackage{amsfonts}
+\RequirePackage{stmaryrd}
+\RequirePackage{mathrsfs}
+\RequirePackage{amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{tikz,tkz-tab}
+\RequirePackage{alltt}
+\RequirePackage{amsthm}
+\RequirePackage{xcolor}
+\RequirePackage{listings}
+\RequirePackage{pict2e}
+
+\RequirePackage{xcolor}
+\RequirePackage[T1]{fontenc}
+%\RequirePackage{palatino}
+%\RequirePackage{courier}
+\RequirePackage{alltt}
+\RequirePackage{longtable}
+
+% (generated online by) Objective Caml to LaTeX2e Objective Caml Listing
+%   http://philippewang.info/cs.tools.camltotex.php
+\DeclareTextSymbol{\QT}{T1}{39}
+\DeclareTextSymbol{\COMMA}{T1}{44}
+\DeclareTextSymbol{\COLON}{T1}{58}
+\DeclareTextSymbol{\SC}{T1}{59}
+\DeclareTextSymbol{\BS}{T1}{92}
+\DeclareTextSymbol{\CI}{T1}{94}
+\DeclareTextSymbol{\TI}{T1}{126}
+ \definecolor{navy}{rgb}{0.15, 0.15, 0.45}
+ %\definecolor{myblue}{rgb}{0.25, 0.25, 0.645} 
+ \definecolor{myblue}{RGB}{160,100,10}
+ \definecolor{darkred}{rgb}{0.845, 0.125, 0.125} 
+ \definecolor{grey}{rgb}{0.3, 0.3, 0.3} 
+ \definecolor{darkgreen}{rgb}{0.25, 0.25, 0.645} 
+ %\definecolor{darkgreen}{rgb}{0.125, 0.845, 0.125} 
+ \definecolor{leaf}{RGB}{100,100,10}
+ %\definecolor{leaf}{rgb}{0.1, 0.9, 0.1} 
+ \definecolor{trois}{RGB}{70,130,10}
+% 
+ \newcommand{\mlkeywordA}[1]{\mbox{\color{myblue}{\textbf{\texttt{#1}}}}}
+ \newcommand{\mlkeywordB}[1]{\mbox{\color{darkred}{\textbf{\texttt{#1}}}}}
+ \newcommand{\mlkeyword}[1]{\mbox{\color{red}{#1}}}
+ \newcommand{\mloperator}[1]{\mbox{\color{blue}{#1}}}
+ \newcommand{\mlmodulename}[1]{\mbox{\color{navy}{#1}}}
+ \newcommand{\mlstring}[1]{\mbox{\color{navy}{#1}}}
+ \newcommand{\mlcomments}[1]{\mbox{\color{grey}{#1}}}
+ \newcommand{\mlcodeline}[2]{\begin{minipage}[c]{0.8\linewidth}\begin{alltt}\mbox{#2}\end{alltt}\end{minipage}\\}
+% ---------------------------------------------------------------------
+
+
+
+%\RequirePackage{algorithm2e}
+% algorithm2e a beaucoup d'options possibles qui changent la présentation
+% des algorithmes. Préférer l'insertion manuelle avec les options voulues.
+ 
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% SI ON N'A PAS L'OPTION vierge %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if@nonvierge
+
+	% Commandes de mise en forme
+	\newcommand{\Q}[1]{{\tt #1)}}
+	\newcommand{\puce}{$\bullet$~~}
+	\newcommand{\point}[1]{\textbf{(#1)}}
+	\newcommand{\cas}{{\bf Cas}}
+	\newcommand{\prop}[1]{\hspace{0.5mm}(\emph{#1})\hspace{1mm}}
+	\newcommand{\step}{~~~$\centerdot$~~}
+	\newcommand{\etoile}{\point{$\star$}~}
+	\newcommand{\saute}{\vspace{2mm}}
+	\renewcommand{\tilde}[1]{\overset {\thicksim}{#1}}
+	\newcommand{\sommaire}{\tableofcontents}
+	\definecolor{yel}{RGB}{210,210,10}
+	\newcommand{\jaune}[1]{\textcolor{yel}{#1}}
+	\newcommand{\fnote}[1]{\footnotemark[#1]}
+	\renewcommand{\rq}[2]{\footnotetext[#1]{#2}}
+	\if@french
+		\newcommand{\ssi}{{\bf ssi }}
+	\fi
+	\if@english
+		\renewcommand{\iff}{{\bf iff }}
+	\fi
+	
+
+
+
+	% Asymptotique
+	\newcommand{\bigO}[3]{\underset{#1\to #2}{\textbf{\textit{O~~}}}\left(#3\right)}
+	\newcommand{\smallO}[3]{\underset{#1\to #2}{\textbf{\textit{o~~}}}\left(#3\right)}
+	\newcommand{\equival}[2]{\underset{#1\to #2}{\thicksim~}}
+	\newcommand{\tend}[2]{\underset{#1\to #2}{\longrightarrow}}
+	\newcommand{\tendvers}{\tend n {+\infty}}
+	\newcommand{\limite}[2]{{\displaystyle \lim_{#1\to #2}}}
+	\newcommand{\plus}{{+\infty}}
+	\newcommand{\moins}{{-\infty}}
+	\newcommand{\seq}[4]{\left(#1_#2\right)_{#3\in\mathbb{#4}}}
+	\newcommand{\suite}[1]{\seq{#1}{n}{n}{N}}
+	\newcommand{\suitestar}[1]{\seq{#1}{n}{n}{\nstar}}
+
+
+	% Symboles indicés
+	\newcommand{\somme}[3]{\displaystyle \sum_{#1=#2}^{#3}}
+	\newcommand{\expsomme}[3]{\overset {#3} {\underset {{#1}={#2}}\sum}}
+	\newcommand{\produit}[3]{\displaystyle \prod_{#1=#2}^{#3}}
+	\newcommand{\integrale}[2]{\displaystyle \int_{#1}^{#2}}
+	\newcommand{\serie}{\displaystyle\sum}
+	\newcommand{\serieprod}{\displaystyle\prod}
+	\newcommand{\inter}[1]{\displaystyle\bigcap_{#1}}
+	\newcommand{\union}[1]{\displaystyle\bigcup_{#1}}
+	\newcommand{\sommedirecte}[2]{\displaystyle \bigoplus_{#1}^{#2}}
+
+
+	% Algèbre Linéaire
+	\newcommand{\base}{\mathscr{B}}
+	\newcommand{\lin}[1]{\mathscr{L}\left(#1\right)}
+	\newcommand{\mat}{\mathcal{M}\mathrm{at}}
+	\newcommand{\matrice}[2]{\mathcal{M}_{#1}\left(\mathbb{#2}\right)}
+	\newcommand{\notemat}[2]{\left(#1_{ij}\right)_{(i,j)\in\N_{#2}^2}}
+	\renewcommand{\ker}[1]{\mathrm{Ker}\left(#1\right)}
+	\newcommand{\Id}{\mathrm{Id}}
+	\newcommand{\vect}[1]{\mathrm{Vect}\left(#1\right)}
+	\newcommand{\Gl}{\mathrm{Gl}}
+	\newcommand{\transp}{~^t}
+	\newcommand{\tr}[1]{\mathrm{tr}\left(#1\right)}
+	\newcommand{\rg}[1]{\mathrm{rg}\left(#1\right)}
+	\newcommand{\X}{\mathrm X}
+	\newcommand{\car}[1]{\mathrm{car}\left(\mathbb{#1}\right)}
+	\newcommand{\codim}[1]{\mathrm{codim}_{#1}}
+	\newcommand{\scal}[2]{\left\langle~{#1}~\left|~{#2}~\right.\right\rangle}
+	\newcommand{\scalbis}[2]{\left[#1,#2\right]}
+	\newcommand{\com}{\mathrm{com}}
+
+
+	% Arithmétique
+	\newcommand{\congru}[2]{~\equiv~#1~\left[#2\right]}
+	\newcommand{\divise}{~/~}
+	\newcommand{\eint}[2]{\llbracket #1;#2\rrbracket}
+
+
+	% Ensembles
+	\newcommand{\poly}[1]{\mathbb{#1}\mathrm{[\X]}}
+	\newcommand{\polyinf}[2]{\mathbb{#1}_{#2}\mathrm{[\X]}}
+	\newcommand{\K}{\mathbb{K}}
+	\newcommand{\N}{\mathbb{N}}
+	\newcommand{\R}{\mathbb{R}}
+	\newcommand{\Z}{\mathbb{Z}}
+	\newcommand{\QQ}{\mathbb{Q}}
+	\newcommand{\CC}{\mathbb{C}}
+	\newcommand{\rstar}{\mathbb{R^\star}}
+	\newcommand{\nstar}{\mathbb{N^\star}}
+	\newcommand{\cstar}{\mathbb{C^\star}}
+	\newcommand{\qstar}{\mathbb{Q^\star}}
+	\newcommand{\zstar}{\mathbb{Z^\star}}
+	\newcommand{\kstar}{\mathbb{K^\star}}
+	\newcommand{\C}[1]{\mathscr{C}^{#1}}
+	\newcommand{\D}[1]{\mathscr{D}^{#1}}
+	\newcommand{\card}{\mathrm{card}}
+	\newcommand{\znz}[1]{\Z_{\displaystyle{/#1\Z}}}
+	\renewcommand{\P}{\mathscr P}
+	\newcommand{\U}{\mathbb{U}}
+	\newcommand{\F}[2]{\mathscr F \left(#1,#2\right)}
+	\newcommand{\inte}[1]{\overset{\circ}{#1}}
+	\newcommand{\adhe}[1]{\overline{#1}}
+	\renewcommand{\S}[3]{\mathrm{S}_{#1}^{#2}\left(#3\right)}
+	\renewcommand{\O}[2]{\mathrm{O}_{#1}\left(#2\right)}
+	\newcommand{\SO}[2]{\mathrm{SO}_{#1}\left(#2\right)}
+	\newcommand{\SL}[2]{\mathrm{SL}_{#1}\left(#2\right)}
+	\newcommand{\A}{\mathscr A}
+	\newcommand{\gener}[1]{\left\langle{#1}\right\rangle}
+	\newcommand{\FF}{\mathbb{F}}
+	\renewcommand{\sp}[1]{\mathrm{Sp}\left(#1\right)}
+	\let\oldemptyset\emptyset
+	\let\emptyset\varnothing
+
+
+
+	% Fonctions particulières
+	\newcommand{\e}{\mathrm{e}}
+	\newcommand{\fois}{\cdot}
+	\newcommand{\re}{\mathrm{Re}}
+	\newcommand{\inv}[1]{\dfrac{1}{#1}}
+	\newcommand{\expinv}[1]{\frac{1}{#1}}
+	\newcommand{\mini}[1]{\displaystyle \min_{#1}}
+	\newcommand{\maxi}[1]{\displaystyle \max_{#1}}
+	\newcommand{\parmi}[2]{\displaystyle \binom {#2} {#1}}
+	\newcommand{\rel}[1]{~\mathscr #1~}
+	\newcommand{\supe}[1]{\displaystyle \sup_{#1}}
+	\newcommand{\infe}[1]{\displaystyle \inf_{#1}}
+	\newcommand{\ch}{\mathrm{ch}}
+	\newcommand{\sh}{\mathrm{sh}}
+	\newcommand{\indic}{\mathds 1}
+	\newcommand{\floorsup}[1]{\left\lceil {#1}\right\rceil}
+	\newcommand{\Y}{\mathrm Y}
+	\newcommand{\rfrac}[2]{^{#1}/_{#2}}
+	\newcommand{\sem}[1]{\llbracket #1 \rrbracket}
+
+
+
+	% Environnements
+	\newenvironment{variations}{\begin{center}\begin{tikzpicture}}{ \end{tikzpicture} \end{center} }
+
+	\if@french
+		\if@nonbeamer
+			\fi
+	\fi
+
+	\if@english
+		\if@nonbeamer
+				\fi
+	\fi
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEAMER  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if@beamer
+	%\usetheme{Warsaw}
+	\usepackage{beamerthemeprogressbar}
+	\progressbaroptions{headline=sections, frametitle=tempa}%éventuellement frametitle/pagetitle = normal
+
+	\definecolor{fond}{RGB}{255,255,230}
+	\definecolor{titlecolor}{RGB}{40,40,110}
+	%\setbeamercolor{background canvas}{bg=fond}
+
+	\newenvironment{thm}[1]{\begin{block}{\color{fond}{#1}}}{\end{block}}
+	\newenvironment{thmex}[1]{\begin{exampleblock}{\color{fond}{#1}}}{\end{exampleblock}}
+	\newenvironment{thmal}[1]{\begin{alertblock}{\color{fond}{#1}}}{\end{alertblock}}
+	\newcommand{\titre}[1]{\frametitle{{#1}}}
+	\newcommand{\soustitre}[1]{\framesubtitle{#1}}
+	
+	\if@french
+		\AtBeginSection[]
+		{
+		\begin{frame}
+		\titre{Plan}
+		\tableofcontents[currentsection]
+		\end{frame}
+		}
+	\fi
+
+	\if@english
+		\AtBeginSection[]
+		{
+		\begin{frame}
+		\titre{Outline}
+		\tableofcontents[currentsection]
+		\end{frame}
+		}
+	\fi
+
+
+	
+
+	%% pour insérer des numéros de page
+ 	%\setbeamertemplate{navigation symbols}{\insertframenumber/\inserttotalframenumber}
+\fi
+
+
+\endinput

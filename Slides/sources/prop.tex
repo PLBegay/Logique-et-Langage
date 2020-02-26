@@ -1,0 +1,1197 @@
+\section{Logique propositionnelle}
+
+
+\begin{frame}
+	\titre{Introduction}
+	
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}
+		 
+		 \item[Qui] Principalement Gottfried Leibniz, George Boole et Augustus De Morgan
+		 \pause
+		 \item[Quand] 17 / 18$^{\grave{e}me}$ siècle, dans la continuité de la syllogistique\pause
+		 \item[Quoi] Un langage \textbf{formel}\pause
+		 \item[] On va pouvoir expliciter la notion de \textbf{calcul logique}, cad de \textbf{preuve}\pause
+		 \item[] On ne les fera donc (enfin) plus `avec les mains` 
+		 
+	\end{description}
+\end{frame}
+
+%----------------------------------------
+\begin{frame}
+	\titre{La notion de langage}
+	
+	Un langage se définit à partir de 3 ingrédients :\newline\pause
+	
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}
+		 
+		 \item[Un alphabet] Un ensemble de symboles		 
+		 \pause
+		 \item[Une syntaxe] Les règles qui dictent comment les symboles se \textbf{combinent} pour former des expressions\pause
+		 \item[Une sémantique] Qui fixe la signification des symboles élémentaires et une méthode de calcul pour la \textbf{composition} des significations
+	\end{description}
+\end{frame}
+
+
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{La sémantique}
+	
+La sémantique d'un langage (formel), c'est une fonction qui, à chaque formule bien formée, associe un \textbf{sens}\pause\newline
+
+Dans le cas de la logique prop, il y a 2 notions de `sens` différentes (mais liées) : la \textbf{vérité}, et les \textbf{conditions de vérité}\pause\newline
+
+Dans les deux cas, on va utiliser $\mathbb{B} = \{\top,\bot\}$, c'est-à-dire les valeurs de vérité `vrai` et `faux` (respectivement)\pause\newline
+
+Bref, la sémantique c'est une façon (un algorithme en fait) de \textbf{calculer} si une formule  ($\approx$ phrase) exprime un truc vrai ou faux
+
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{La sémantique, exemples}
+	
+		La terre est ronde \pause : $\top$\pause\newline
+	
+		Il fait beau à Paris aujourd'hui \pause : $\top$\pause, mais cette proposition sera aussi parfois $\bot$\pause\newline
+		
+		Le prof a fait de la vaisselle ce week-end\pause : $\top$\pause, dépendance temporelle \pause + vous ne pouvez pas le savoir par vous-même\pause\newline
+		
+		Au moins trois d'entre vous deviendront des linguistes \pause : ???\pause\newline
+		
+		Morale : la \textbf{vérité} d'une proposition peut dépendre de données inaccessibles ou floues
+	
+\end{frame}
+%----------------------------------------
+
+\begin{frame}
+	\titre{Notions de vérité}
+	
+On va d'abord identifier dans une phrase les \textbf{propositions atomiques}, cad les propositions qu'on ne peut pas décomposer en combinaison logique de plus petites propositions ($\approx$ les propositions simples)\pause\newline
+
+La \textbf{vérité} d'une phrase c'est le fait que cette phrase soit vraie ou non \textbf{étant donnée une valeur pour chaque proposition atomique} (ou valuation)\pause\newline
+
+Les \textbf{conditions de vérité} d'une phrase, c'est les valuations (des propositions atomiques de la phrase) sous lesquelles elle sera vraie
+
+\end{frame}
+%----------------------------------------
+
+\begin{frame}
+	\titre{Notions de vérité, exemples}
+	
+	`Il fait beau et j'ai faim`\pause\newline
+	
+	Les propositions atomiques sont \textcolor{blue}{`Il fait beau`} et \textcolor{orange}{`j'ai faim`}\pause\newline
+	
+		\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}
+		 
+		 \item[Vérité] Puisque les deux propositions atomiques sont (indépendamment) $\top$, la conjonction l'est aussi (par exemple)
+		 \pause
+		 \item[Conditions de vérité] Il y quatre valuations différentes des propositions atomiques : \pause $\textcolor{blue}{\bot}\textcolor{orange}{\bot}$, $\textcolor{blue}{\bot}\textcolor{orange}{\top}$, $\textcolor{blue}{\top}\textcolor{orange}{\bot}$ et $\textcolor{blue}{\top}\textcolor{orange}{\top}$\pause
+		 \item[] Sur les 4, seule la dernière rend la proposition totale $\top$
+		 	\end{description}
+\end{frame}
+
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Notions de vérité, exemples}
+	
+	`Au moins 3 de mes 4 enfants deviendront linguistes`\pause\newline
+	
+	Les \only<3->{4}\only<1-2>{\textcolor{white}{4}} propositions atomiques sont \pause (Jules / Elsa / Diane / Jess) est un(e) futur(e) linguiste\newline\pause
+	
+	Combien de valuations ? \pause 16\pause\newline
+		\only<1-6>{\textcolor{white}{Conditions de vérité :}}\newline
+	\only<7>{Conditions de vérité :}\newline
+	
+	\only<1-6>{\begin{tabular}{cccc}
+$\bot\bot\bot\bot$ & $\bot\top\bot\bot$ & $\top\bot\bot\bot$ & $\top\top\bot\bot$\\
+$\bot\bot\bot\top$ & $\bot\top\bot\top$ & $\top\bot\bot\top$ & $\top\top\bot\top$\\ 
+$\bot\bot\top\bot$ & $\bot\top\top\bot$ & $\top\bot\top\bot$ & $\top\top\top\bot$\\ 
+$\bot\bot\top\top$ & $\bot\top\top\top$ & $\top\bot\top\top$ & $\top\top\top\top$\\ 
+\end{tabular}}
+\pause
+
+\only<7->{
+	\begin{tabular}{cccc}
+$\textcolor{red}{\bot\bot\bot\bot}$ & $\textcolor{red}{\bot\top\bot\bot}$ & $\textcolor{red}{\top\bot\bot\bot}$ & $\textcolor{red}{\top\top\bot\bot}$\\
+$\textcolor{red}{\bot\bot\bot\top}$ & $\textcolor{red}{\bot\top\bot\top}$ & $\textcolor{red}{\top\bot\bot\top}$ & $\textcolor{green}{\top\top\bot\top}$\\ 
+$\textcolor{red}{\bot\bot\top\bot}$ & $\textcolor{red}{\bot\top\top\bot}$ & $\textcolor{red}{\top\bot\top\bot}$ & $\textcolor{green}{\top\top\top\bot}$\\ 
+$\textcolor{red}{\bot\bot\top\top}$ & $\textcolor{green}{\bot\top\top\top}$ & $\textcolor{green}{\top\bot\top\top}$ & $\textcolor{green}{\top\top\top\top}$\\ 
+\end{tabular}}
+	
+\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Notions de vérité, remarques}
+
+Calculer les \textbf{conditions de vérité} est bien plus général que \textbf{la vérité} dans une configuration précise\pause\newline
+
+C'est donc à cet aspect là qu'on va s'intéresser par la suite\pause\newline
+
+Ca reste quand même assez bourrin, on verra encore plus tard des trucs plus élégants\newline\pause
+
+Mais avant de continuer sur la sémantique, on a besoin de formellement définir la base du langage
+(alphabet + syntaxe)
+\end{frame}
+
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{L'alphabet}
+	
+	Les seuls \textbf{symboles} utilisés en logique propositionnelles sont :\newline\pause
+	
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=2.3in]
+		 \setlength\itemsep{1.4em}
+		 
+		 \item[Symboles de proposition] P, Q, R \dots\pause ainsi que $\top$ et $\bot$
+		 \pause
+		 \item[Un connecteur unaire] $\neg$ (la négation) \pause
+		 \item[Des connecteurs binaires] \appearsAt{5}{black}{$\vee$}\appearsAt{6}{black}{, $\wedge$}\appearsAt{7}{black}{, $\rightarrow$}\appearsAt{8}{black}{, $\leftrightarrow$}		 \item[] \appearsAt{5}{black}{`ou`}\appearsAt{6}{black}{, `et`}\appearsAt{7}{black}{, `implication`}\appearsAt{8}{black}{, `équivalence`}\pause\pause\pause\pause
+		 \item[Des parenthèses] `(` et `)`
+		 	\end{description}
+\end{frame}
+
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{La syntaxe}
+	
+	 Les formules bien formées de la logique prop ($L_p$) peuvent se construire \underline{\textbf{uniquement}} via les règles suivantes :\newline\pause
+	
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}
+		 
+		 \item[Props atomiques] Les symboles de prop (P, Q, R, \dots) sont dans $L_p$
+		 \pause
+		 \item[Négation] Si $\phi$ est dans $L_p$, alors $\neg \phi$ est dans $L_p$ \pause
+		 \item[Connecteurs binaires] Si $\phi$ et $\psi$ sont dans $L_p$, alors $(\phi \wedge \psi), (\phi \vee \psi), (\phi \rightarrow \psi)$ et $(\phi \leftrightarrow \psi)$ sont dans $L_p$\pause
+		 	\end{description}
+		 	\vspace{0.3cm}
+		 	Une formule est bien formée ssi on peut en dresser l'\textbf{arbre syntaxique}
+\end{frame}
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $P$ ?\pause \newline 
+
+\center
+\Tree [.$P$ ]
+\end{frame}
+
+
+%----------------------------------------
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $(P \wedge Q)$ ?\pause \newline 
+
+\center
+\Tree [.$\wedge$ P Q ]
+\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $(P \vee Q)$ ?\pause \newline 
+
+\center
+\Tree [.$\vee$ P Q ]
+\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $((P \wedge Q) \vee (R \wedge S))$ ?\pause \newline 
+
+\center
+\Tree [.$\vee$ [.$\wedge$ P Q ] [.$\wedge$ R S ] ]
+\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $(P \rightarrow Q)$?\pause \newline 
+
+\center
+\Tree [.$\rightarrow$ P Q ]
+\end{frame}
+
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $\only<1>{\textcolor{black}{(}}\only<2->{
+\textcolor{red}{(}}\only<1-2>{\textcolor{black}{(}}\only<3->{\textcolor{blue}{(}}(P \rightarrow Q) \only<1-2>{\textcolor{black}{\wedge}}\only<3->{\textcolor{blue}{\wedge}} (P \vee R)\only<1-2>{\textcolor{black}{)}}\only<3->{\textcolor{blue}{)}} \only<1>{\textcolor{black}{\rightarrow}}\only<2->{\textcolor{red}{\rightarrow}} P\only<1>{\textcolor{black}{)}}\only<2->{\textcolor{red}{)}}$ ?
+
+\pause\pause\pause
+
+\center
+\Tree [.$\rightarrow$ [.$\wedge$ [.$\rightarrow$ P Q ] [.$\vee$ P R ] ] P ]
+\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $(P \wedge P)$ ?\pause \newline 
+\begin{figure}
+\center
+\Tree [.$\wedge$ P P ]
+\end{figure}
+ \pause
+
+\textcolor{white}{lol}\newline
+La syntaxe est littérale et bête. La formule `$(P \wedge P)$` est une proposition un peu absurde (on pourrait dire juste `$P$`), mais elle est bien formée, on la reproduit donc telle quelle.
+\end{frame}
+
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $\neg P $ ?\pause \newline 
+
+\center
+\Tree [.$\neg$ P ]
+\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $(\neg P \vee \neg Q)$ ?\pause \newline 
+
+\center
+\Tree [.$\vee$ [.$\neg$ P ] [.$\neg$ Q ] ]
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $\neg (\neg P \vee \neg Q)$ ?\pause \newline 
+
+\center
+\Tree [.$\neg$ [.$\vee$ [.$\neg$ P ] [.$\neg$ Q ] ] ]
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $P \vee Q \vee R $ ?\pause \newline 
+
+\begin{figure}
+\center
+:(
+\end{figure}
+  \pause
+
+
+\textcolor{white}{lol}\newline
+La formule n'est pas bien formée (aucune utilisation des règles vues précédemment ne permet de la construire)
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $((P \vee Q) \vee R) $ ?\pause \newline 
+
+\center
+\Tree [.$\vee$ [.$\vee$ P Q ] R ]
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Arbres syntaxiques}
+
+Arbre de la formule $(P \vee (Q \vee R)) $ ?\pause \newline 
+
+\center
+\Tree [.$\vee$ P [.$\vee$ Q R ] ]
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{La syntaxe}
+	
+Il existe \textbf{exactement un seul} arbre syntaxique par formule bien formée\newline\pause
+
+Ca veut dire que la logique propositionnelle est un langage \textbf{non-ambigu}, contrairement à la langue naturelle !\newline\pause
+
+Note : c'est la même chose en arithmétique. En effet, l'expression $1 + 2 + 3$ n'existe pas \textit{vraiment}, c'est soit $1 + (2 + 3)$, soit $(1 + 2) + 3$, mais comme \textit{ça revient au même}, on ne s'embête pas avec la distinction.
+
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique}
+	
+Pour analyser les conditions de vérité d'une formule, on va se baser sur sa syntaxe\newline\pause
+
+En effet, le sens d'une formule est \textbf{construit} sur la base de son arbre syntaxique\newline\pause
+
+Soient $\phi$ et $\psi$ $\in L_p$ (deux formules bien formées donc)\pause\newline
+\begin{center}
+\Tree [.$\vee$ $\phi$ $\psi$ ]\end{center}\pause
+
+
+Si $\phi$, $\psi$ ou les deux sont $\top$, alors la formule entière est $\top$\newline
+Si $\phi$ et $\psi$ sont $\bot$, la formule entière est $\bot$
+
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique, le $\vee$}
+	
+	On va présenter ça sous forme de tableaux, ou plus exactement de \textbf{tables de vérité}\pause\newline
+\begin{center}
+\Tree [.$\vee$ $\phi$ $\psi$ ]\pause
+
+\begin{tabular}{c|c||c}
+$\phi$ & $\psi$ & $\phi \vee \psi$ \\\hline
+$\bot$ & $\bot$ & $\bot$ \\
+$\bot$ & $\top$ & $\top$ \\
+$\top$ & $\bot$ & $\top$ \\
+$\top$ & $\top$ & $\top$ \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+%----------------------------------------
+\begin{frame}
+	\titre{Syntaxe / Sémantique, le $\wedge$}
+	
+\begin{center}
+\Tree [.$\wedge$ $\phi$ $\psi$ ]\pause
+
+\begin{tabular}{c|c||c}
+$\phi$ & $\psi$ & $\phi \wedge \psi$ \\\hline
+$\bot$ & $\bot$ & $\bot$ \\
+$\bot$ & $\top$ & $\bot$ \\
+$\top$ & $\bot$ & $\bot$ \\
+$\top$ & $\top$ & $\top$ \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique}
+
+Ces deux \textbf{tables de vérité} décrivent l'entièreté du \textit{comportement} de $\vee$ et $\wedge$\pause\newline
+
+Soit la formule $\phi = ((P \wedge Q) \vee (Q \wedge P))$. On peut la décomposer comme pour l'analyser avec ce qu'on a vu jusqu'ici\pause\newline
+
+Quel est l'arbre syntaxique de cette formule ?\pause
+
+\begin{center}
+\Tree [.$\vee$ [.$\wedge$ P Q ] [.$\wedge$ Q R ] ]
+\end{center}\pause
+
+Quels sont les éléments atomiques ? \pause `P` et `Q`
+
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique}
+
+
+\begin{center}
+\Tree [.$\vee$ [.$\wedge$ P Q ] [.$\wedge$ Q P ] ]
+\end{center}\pause
+
+
+\only<1-2>{
+\begin{tabular}{c|c||c}
+$P$ & $Q$ & $((P \wedge Q) \vee (Q \wedge P))$ \\\hline
+$\bot$ & $\bot$ &    \\
+$\bot$ & $\top$ &    \\
+$\top$ & $\bot$ &    \\
+$\top$ & $\top$ &   \\
+\end{tabular}}
+\only<3>{
+\begin{tabular}{c|c||c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $((P \wedge Q) \vee (Q \wedge P))$ \\\hline
+$\bot$ & $\bot$ &  &   \\
+$\bot$ & $\top$ &  &   \\
+$\top$ & $\bot$ &  &   \\
+$\top$ & $\top$ &  &  \\
+\end{tabular}}
+\only<4>{
+\begin{tabular}{c|c||c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $((P \wedge Q) \vee (Q \wedge P))$ \\\hline
+$\bot$ & $\bot$ & $\bot$ &   \\
+$\bot$ & $\top$ & $\bot$ &   \\
+$\top$ & $\bot$ & $\bot$ &   \\
+$\top$ & $\top$ & $\top$ &  \\
+\end{tabular}}
+\only<5>{
+\begin{tabular}{c|c||c|c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $(Q \wedge P)$ & $((P \wedge Q) \vee (Q \wedge P))$ \\\hline
+$\bot$ & $\bot$ & $\bot$ & &  \\
+$\bot$ & $\top$ & $\bot$ & &  \\
+$\top$ & $\bot$ & $\bot$ & &  \\
+$\top$ & $\top$ & $\top$ & & \\
+\end{tabular}}
+\only<6>{
+\begin{tabular}{c|c||c|c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $(Q \wedge P)$ & $((P \wedge Q) \vee (Q \wedge P))$ \\\hline
+$\bot$ & $\bot$ & $\bot$ & $\bot$ &  \\
+$\bot$ & $\top$ & $\bot$ & $\bot$ &  \\
+$\top$ & $\bot$ & $\bot$ & $\bot$ &  \\
+$\top$ & $\top$ & $\top$ & $\top$ & \\
+\end{tabular}}
+\only<7->{
+\begin{tabular}{c|c||c|c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $(Q \wedge P)$ & $((P \wedge Q) \vee (Q \wedge P))$ \\\hline
+$\bot$ & $\bot$ & $\bot$ & $\bot$ & $\bot$ \\
+$\bot$ & $\top$ & $\bot$ & $\bot$ & $\bot$ \\
+$\top$ & $\bot$ & $\bot$ & $\bot$ & $\bot$ \\
+$\top$ & $\top$ & $\top$ & $\top$ & $\top$ \\
+\end{tabular}}\pause
+
+\textcolor{white}{saut de ligne discret}\newline
+\appearsAt{8}{black}{On peut noter que les 3 dernières colonnes sont identiques : les formules sont \textbf{logiquement équivalentes}}
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique}
+
+Au fait, étant donné un ensemble de props atomiques, comment être sûr de bien prendre compte toutes les valuations ?\pause\newline
+
+En considérant les valuations comme du binaire et en énumérant : $\bot \equiv 0$ et $\top \equiv 1$, vous partez de $\bot\bot\dots\bot$ $\equiv 00\dots0$ et vous ajoutez 1 avec un système de retenue.\pause\newline
+
+Exemple avec 3 props atomiques : $000 \rightarrow 001 \rightarrow 010 \rightarrow 011 \rightarrow 100 \rightarrow 101 \rightarrow 110 \rightarrow 111$\pause\newline
+
+Petite astuce au passage : pour $n$ props atomiques, il y aura $2^n$ valuations (pensez toujours à bien vérifier !)
+
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique}
+
+\begin{tabular}{c|c||c|c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $(Q \wedge P)$ & $((P \wedge Q) \vee (Q \wedge P))$ \\\hline
+$\bot$ & $\bot$ & $\bot$ & $\bot$ & $\bot$ \\
+$\bot$ & $\top$ & $\bot$ & $\bot$ & $\bot$ \\
+$\top$ & $\bot$ & $\bot$ & $\bot$ & $\bot$ \\
+$\top$ & $\top$ & $\top$ & $\top$ & $\top$ \\
+\end{tabular}
+
+\vspace{0.4cm}
+
+\begin{tabular}{c|c||c|c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $(Q \wedge P)$ & $((P \wedge Q) \vee (Q \wedge P))$ \\\hline
+$0$ & $0$ & $0$ & $0$ & $0$ \\
+$0$ & $1$ & $0$ & $0$ & $0$ \\
+$1$ & $0$ & $0$ & $0$ & $0$ \\
+$1$ & $1$ & $1$ & $1$ & $1$ \\
+\end{tabular}
+
+\vspace{0.4cm}
+
+Vous pouvez utiliser $0/1$ au lieu de $\bot/\top$ (c'est d'ailleurs plus fidèle à la formalisation algébrique de la logique prop)
+
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique, le $\neg$}
+	
+\begin{center}
+\Tree [.$\neg$ $\phi$  ]\pause
+
+\vspace{1cm}
+
+\begin{tabular}{c||c}
+$\phi$ & $\neg\phi$ \\\hline
+$0$ & $1$\\
+$1$ & $0$\\
+\end{tabular}
+\end{center}
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique, le $\rightarrow$}
+	
+\begin{center}
+\Tree [.$\rightarrow$ $\phi$ $\psi$ ]\pause
+
+\vspace{1cm}
+
+\only<2>{
+\begin{tabular}{c|c||c}
+$\phi$ & $\psi$ & $\phi \rightarrow \psi$ \\\hline
+$0$ & $0$ & $1$\\
+$0$ & $1$ & $1$\\
+$1$ & $0$ & $0$\\
+$1$ & $1$ & $1$\\
+\end{tabular}}
+
+
+\only<1>{
+\begin{tabular}{ccc}
+$\phi$ & $\psi$ & $\phi \rightarrow \psi$ \\\hline
+$\textcolor{white}{0}$ & $\textcolor{white}{0}$ & $\textcolor{white}{1}$\\
+$\textcolor{white}{0}$ & $\textcolor{white}{0}$ & $\textcolor{white}{1}$\\
+$\textcolor{white}{0}$ & $\textcolor{white}{0}$ & $\textcolor{white}{1}$\\
+$\textcolor{white}{0}$ & $\textcolor{white}{0}$ & $\textcolor{white}{1}$\\
+\end{tabular}}
+
+
+\only<3>{
+\begin{tabular}{c|c||c}
+$\phi$ & $\psi$ & $\phi \rightarrow \psi$ \\\hline
+$\textcolor{red}{0}$ & $\textcolor{red}{0}$ & $\textcolor{red}{1}$\\
+$\textcolor{red}{0}$ & $\textcolor{red}{1}$ & $\textcolor{red}{1}$\\
+$1$ & $0$ & $0$\\
+$1$ & $1$ & $1$\\
+\end{tabular}}
+
+\vspace{0.4cm}
+
+\end{center}
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique, le $\leftrightarrow$}
+	
+\begin{center}
+\Tree [.$\leftrightarrow$ $\phi$ $\psi$ ]\pause
+
+\vspace{1cm}
+
+\begin{tabular}{c|c||c}
+$\phi$ & $\psi$ & $\phi \leftrightarrow \psi$ \\\hline
+$0$ & $0$ & $1$\\
+$0$ & $1$ & $0$\\
+$1$ & $0$ & $0$\\
+$1$ & $1$ & $1$\\
+\end{tabular}
+\end{center}
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique}
+
+Soit la formule $\phi = ((P \wedge Q) \rightarrow P)$. \pause 
+
+Quel est l'arbre syntaxique de cette formule ?\pause
+
+\begin{center}
+\Tree [.$\rightarrow$ [.$\wedge$ P Q ] P ]
+\end{center}\pause
+
+Quels sont les éléments atomiques ? \pause `P` et `Q`
+
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique}
+
+
+\begin{center}
+\Tree [.$\rightarrow$ [.$\wedge$ P Q ] P ]
+\end{center}\pause
+
+
+\only<1-2>{
+\begin{tabular}{c|c||c}
+$P$ & $Q$ & $((P \wedge Q) \rightarrow P)$ \\\hline
+$\bot$ & $\bot$ &    \\
+$\bot$ & $\top$ &    \\
+$\top$ & $\bot$ &    \\
+$\top$ & $\top$ &   \\
+\end{tabular}}
+\only<3>{
+\begin{tabular}{c|c||c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $((P \wedge Q) \rightarrow P)$ \\\hline
+$\bot$ & $\bot$ &  &   \\
+$\bot$ & $\top$ &  &   \\
+$\top$ & $\bot$ &  &   \\
+$\top$ & $\top$ &  &  \\
+\end{tabular}}
+\only<4>{
+\begin{tabular}{c|c||c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $((P \wedge Q) \rightarrow P)$ \\\hline
+$\bot$ & $\bot$ & $\bot$ &   \\
+$\bot$ & $\top$ & $\bot$ &   \\
+$\top$ & $\bot$ & $\bot$ &   \\
+$\top$ & $\top$ & $\top$ &  \\
+\end{tabular}}
+\only<5->{
+\begin{tabular}{c|c||c|c}
+$P$ & $Q$ & $(P \wedge Q)$ & $((P \wedge Q) \rightarrow P)$ \\\hline
+$\bot$ & $\bot$ & $\bot$ & $\top$ \\
+$\bot$ & $\top$ & $\bot$ & $\top$ \\
+$\top$ & $\bot$ & $\bot$ & $\top$ \\
+$\top$ & $\top$ & $\top$ & $\top$ \\
+\end{tabular}}\pause
+\pause\pause\pause
+\textcolor{white}{saut de ligne discret}\newline
+
+On a uniquement des $\top$ au final : la proposition est une \textbf{tautologie} (elle est \textbf{toujours} vraie, cad pour toute valuation)
+
+\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique}
+
+Soit la formule $((\neg P \vee Q) \leftrightarrow (P \rightarrow Q))$ \pause 
+
+Quel est l'arbre syntaxique de cette formule ?\pause
+
+\begin{center}
+\Tree [.$\leftrightarrow$ [.$\vee$ [.$\neg$ P ] Q ] [.$\rightarrow$ P Q ] ]
+\end{center}\pause
+
+Quels sont les éléments atomiques ? \pause `P` et `Q`
+
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+	\titre{Syntaxe / Sémantique}
+
+\only<1-8>{
+\begin{center}
+\Tree [.$\leftrightarrow$ [.$\vee$ [.$\neg$ P ] Q ] [.$\rightarrow$ P Q ] ]
+\end{center}}\pause
+
+
+\only<1-2>{
+\begin{tabular}{c|c||c}
+$P$ & $Q$ & $((\neg P \vee Q) \leftrightarrow (P \rightarrow Q))$ \\\hline
+$\bot$ & $\bot$ &    \\
+$\bot$ & $\top$ &    \\
+$\top$ & $\bot$ &    \\
+$\top$ & $\top$ &   \\
+\end{tabular}}
+\only<3>{
+\begin{tabular}{c|c||c|c}
+$P$ & $Q$ & $(\neg P \vee Q)$ & $((\neg P \vee Q) \leftrightarrow (P \rightarrow Q))$ \\\hline
+$\bot$ & $\bot$ &  &   \\
+$\bot$ & $\top$ &  &   \\
+$\top$ & $\bot$ &  &   \\
+$\top$ & $\top$ &  &  \\
+\end{tabular}}
+\only<4>{
+\begin{tabular}{c|c||c|c|c}
+$P$ & $Q$ & $\neg P$ & $(\neg P \vee Q)$ & $((\neg P \vee Q) \leftrightarrow (P \rightarrow Q))$ \\\hline
+$\bot$ & $\bot$ &  & &  \\
+$\bot$ & $\top$ &  &  & \\
+$\top$ & $\bot$ &  &  & \\
+$\top$ & $\top$ &  &  & \\
+\end{tabular}}
+\only<5>{
+\begin{tabular}{c|c||c|c|c}
+$P$ & $Q$ & $\neg P$ & $(\neg P \vee Q)$ & $((\neg P \vee Q) \leftrightarrow (P \rightarrow Q))$ \\\hline
+$\bot$ & $\bot$ & $\top$  & &  \\
+$\bot$ & $\top$ & $\top$ &  & \\
+$\top$ & $\bot$ & $\bot$ &  & \\
+$\top$ & $\top$ & $\bot$  & &   \\
+\end{tabular}}
+\only<6>{
+\begin{tabular}{c|c||c|c|c}
+$P$ & $Q$ & $\neg P$ & $(\neg P \vee Q)$ & $((\neg P \vee Q) \leftrightarrow (P \rightarrow Q))$ \\\hline
+$\bot$ & $\bot$ & $\top$  & $\top$ &  \\
+$\bot$ & $\top$ & $\top$ & $\top$ & \\
+$\top$ & $\bot$ & $\bot$ & $\bot$ & \\
+$\top$ & $\top$ & $\bot$  & $\top$ &   \\
+\end{tabular}}
+\only<7>{
+\begin{tabular}{c|c||c|c|c|c}
+$P$ & $Q$ & $\neg P$ & $(\neg P \vee Q)$ & $(P \rightarrow Q)$ & $((\neg P \vee Q) \leftrightarrow (P \rightarrow Q))$ \\\hline
+$\bot$ & $\bot$ & $\top$  & $\top$ & $\top$&  \\
+$\bot$ & $\top$ & $\top$ & $\top$ & $\top$& \\
+$\top$ & $\bot$ & $\bot$ & $\bot$ & $\bot$& \\
+$\top$ & $\top$ & $\bot$  & $\top$ & $\top$&   \\
+\end{tabular}}
+\only<8->{
+\begin{tabular}{c|c||c|c|c|c}
+$P$ & $Q$ & $\neg P$ & $(\neg P \vee Q)$ & $(P \rightarrow Q)$ & $((\neg P \vee Q) \leftrightarrow (P \rightarrow Q))$ \\\hline
+$\bot$ & $\bot$ & $\top$  & $\top$ & $\top$& $\top$  \\
+$\bot$ & $\top$ & $\top$ & $\top$ & $\top$& $\top$\\
+$\top$ & $\bot$ & $\bot$ & $\bot$ & $\bot$& $\top$\\
+$\top$ & $\top$ & $\bot$  & $\top$ & $\top$& $\top$  \\
+\end{tabular}}
+\pause
+\pause\pause\pause\pause\pause\pause
+\textcolor{white}{saut de ligne discret}\newline
+\pause
+On a uniquement des $\top$ au final : la proposition $((\neg P \vee Q) \leftrightarrow (P \rightarrow Q))$ est une \textbf{tautologie}, ce qui veut dire que $(\neg P \vee Q)$ et $(P \rightarrow Q)$ sont \textbf{logiquement équivalentes}\pause\newline
+
+Dit autrement, aucun contexte (cad aucune valuation) ne saura les différencier, car elles ont le même \textbf{sens}
+
+\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Quelques résultats}
+	
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}
+		 
+		 \item[Lois de De Morgan] $(\neg (\phi \wedge \psi) \leftrightarrow (\neg \phi \vee \neg \psi))$
+		 \item[] $(\neg (\phi \vee \psi) \leftrightarrow (\neg \phi \wedge \neg \psi))$\pause
+		 \item[Modus Ponens] $(((\phi \rightarrow \psi) \wedge \phi) \rightarrow \psi)$\pause
+		 \item[Modus Barbara] $(((\phi \rightarrow \psi) \wedge (\psi \rightarrow \omega)) \rightarrow (\phi \rightarrow \omega))$\pause
+		 \item[Curryfication] $(((\phi \wedge \psi) \rightarrow \omega) \leftrightarrow (\phi \rightarrow (\psi \rightarrow \omega)))$\pause
+		 \item[Associativité] $(((\phi \vee \psi) \vee \omega) \leftrightarrow (\phi \vee (\psi \vee \omega)))$
+		 \item[] $(((\phi \wedge \psi) \wedge \omega) \leftrightarrow (\phi \wedge (\psi \wedge \omega)))$
+		  
+	\end{description}
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+	\titre{Quelques résultats bis}
+	
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}
+		 \item[Distributivité] $((\phi \wedge (\psi \vee \omega)) \leftrightarrow ((\phi \wedge \psi) \vee (\phi \wedge \omega)))$\pause
+		 \item[] $((\phi \vee (\psi \wedge \omega)) \leftrightarrow ((\phi \vee \psi) \wedge (\phi \vee \omega)))$\pause		 
+		 \item[Tiers exclu] $(\phi \vee \neg \phi)$\pause
+		 \item[Double négation] $(\neg \neg \phi \leftrightarrow \phi)$\pause
+		 \item[Loi de Peirce] $(((\phi \rightarrow \psi) \rightarrow \phi) \rightarrow \phi) $
+	\end{description}
+\pause	
+	\textcolor{white}{saut à la ligne}\newline
+	Ces résultats se retrouvent via des tables de vérité (toutes les formules sont des tautologies) 
+	
+\end{frame}
+
+%----------------------------------------
+
+
+%!!!!!!
+%%----------------------------------------
+%
+%\begin{frame}
+%\titre{Pour la suite, questions théoriques}
+%
+%Comment retrouver dans ce formalisme la notion de propositions contradictoires ?\newline\pause
+%
+%Peut-on trouver d'autres tautologies ?\pause\newline
+%
+%D'autres formules équivalentes ? (cad des $\phi$ et $\psi$ tq $\phi \leftrightarrow \psi$ soit une tautologie)\pause\newline
+%
+%Ainsi que d'autres formules plus fortes que d'autres ? (cad des $\phi$ et $\psi$ tq $\phi \rightarrow \psi$ soit une tautologie)\pause\newline
+%
+%La syntaxe est-elle minimale ?
+%
+%\end{frame}
+%
+%%----------------------------------------
+%
+%\begin{frame}
+%\titre{Pour la suite, questions pratiques}
+%
+%Comment utiliser la logique propositionnelle pour modéliser les phrases de la langue naturelle ?\pause\newline
+%
+%Est-ce seulement possible de couvrir toute la langue ?\pause\newline
+%
+%Cas particulier : est-il possible de formaliser l'exemple sur les au moins 3 enfants qui deviennent linguiste sans soi-même devenir fou ?
+%
+%\end{frame}
+
+
+\begin{frame}
+\titre{Modélisation en logique prop, intro}
+
+La logique propositionnelle est parfaite pour modéliser (représenter) tout un tas de problèmes \textit{discrets}, cad très clairement définis et `carrés` (par ex. le sudoku ou le mastermind)\pause\newline
+
+Il y a des algorithmes génériques sur les formules de $L_p$ qui permettent donc de résoudre (plus ou moins) efficacement ces problèmes une fois qu'ils ont été traduits en logique prop\pause\newline
+
+Pour ce qui est de la langue naturelle, c'est moins clair
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+\titre{Modélisation en logique prop, base}
+
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}
+		 
+		 \item[En gros] Identifier les propositions atomiques de la phrases
+		 
+		 \item[] Les représenter par P, Q, R \dots
+		 \item[] Retrouver la structure de la phrase avec les connecteurs\pause
+		 \item[Exemple] Jules est triste\pause
+		 \item[] Une prop atomique (la phrase)\pause
+		 \item[Traduction] `$P$`, où $P \equiv$ Jules est triste
+	\end{description}
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+\titre{Modélisation en logique prop, exemples}
+
+\only<1-2>{`Jules est triste et Elsa est cool`}\only<3->{`\textcolor{blue}{Jules est triste} et \textcolor{orange}{Elsa est cool}`}\pause\newline
+
+Deux propositions atomiques\pause\pause\newline
+
+On pose $P \equiv $ \textcolor{blue}{Jules est triste} et $Q \equiv $ \textcolor{orange}{Elsa est cool}\pause\newline
+
+La phrase se traduit alors en $(P \wedge Q)$
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+\titre{Modélisation en logique prop, exemples}
+
+`Jules est triste et cool`\pause\newline
+
+Deux propositions atomiques\pause\newline
+
+On pose $P \equiv $ Jules est triste et $Q \equiv $ Jules est cool\pause\newline
+
+La phrase se traduit alors en $(P \wedge Q)$
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+\titre{Modélisation en logique prop, exemples}
+
+`Jules est beau mais chiant`\pause\newline
+
+Deux propositions atomiques\pause\newline
+
+On pose $P \equiv $ Jules est beau et $Q \equiv $ Jules est chiant\pause\newline
+
+La phrase se traduit alors en \pause $(P \wedge Q)$ : le \textit{contraste} introduit par le `mais` n'est pas reproductible en logique prop !
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+\titre{Modélisation en logique prop, exemples}
+
+`Jules n'est pas heureux`\pause\newline
+
+Une proposition atomique\pause\newline
+
+On pose $P \equiv $ Jules est heureux (attention, la négation n'est pas dans la prop atomique, car elle se traduit par le connecteur $\neg$ !)\pause\newline
+
+La phrase se traduit alors en $\neg P$
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+\titre{Modélisation en logique prop, exemples}
+
+`Alice ne viendra que si Jules ne vient pas`\pause\newline
+
+Deux propositions atomiques\pause\newline
+
+On pose $P \equiv $ Alice viendra et $Q \equiv $ Jules vient\pause\newline
+
+La phrase se traduit alors en \pause $(P \rightarrow \neg Q)$ \pause, ou en $(Q \rightarrow \neg P)$
+
+\end{frame}
+
+%----------------------------------------
+%
+%
+%\begin{frame}
+%	\titre{Arbres syntaxiques}
+%
+%Arbre de la formule $((((P \rightarrow Q) \wedge (P \vee R)) \rightarrow P) \rightarrow (((P \rightarrow Q) \wedge (P \vee R)) \rightarrow P))$?\pause \newline 
+%
+%\center
+%\Tree [.$\rightarrow$ [.$\rightarrow$ [.$\wedge$ [.$\rightarrow$ P Q ] [.$\vee$ P R ] ] P ] [.$\rightarrow$ [.$\wedge$ [.$\rightarrow$ P Q ] [.$\vee$ P R ] ] P ] ]
+%\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+
+`Jules et Elsa sont en vacances, et alors que Jules en profite pour apprendre le jet-ski, Elsa
+s'embête beaucoup`\pause\newline
+
+Quatre propositions atomiques\pause\newline
+
+On pose $P \equiv $ Jules est en vacances, $Q \equiv $ Elsa est en vacances, R $\equiv$ Jules apprend le jet-ski et S $\equiv$ Elsa s'embête beaucoup\pause\newline 
+
+La tentation alors c'est de traduire la phrase en $((P \wedge Q) \rightarrow (R \wedge S))$, mais ça ne marche pas\pause\newline
+
+En effet, cette proposition dit `Chaque fois que Jules et Elsa sont tous les deux en vacances, Jules apprend le jet-ski et Elsa s'embête beaucoup`, ce qui n'est pas du tout ce que dit la phrase originale (on perd notamment le fait que Jules et Elsa sont \underline{actuellement} en vacances)
+
+\end{frame}
+
+%----------------------------------------
+\begin{frame}
+
+`Jules et Elsa sont en vacances, et alors que Jules en profite pour apprendre le jet-ski, Elsa
+s'embête beaucoup`\newline
+
+Quatre propositions atomiques\newline
+
+On pose $P \equiv $ Jules est en vacances, $Q \equiv $ Elsa est en vacances, R $\equiv$ Jules apprend le jet-ski et S $\equiv$ Elsa s'embête beaucoup\newline 
+
+La phrase se traduit alors en $((P \wedge Q) \wedge (R \wedge S))$\pause\newline
+
+Le parenthésage est \textit{négociable}, mais c'est, je pense, celui qui traduit le mieux la logique de la phrase.\pause\newline
+
+Par contre, pour le contraste de la phrase (`alors que`) et le `en profite`, la logique prop ne peut rien faire :(
+
+\vspace{0.5cm}
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+\titre{Modélisation}
+
+`Elsa ne part en vacances que si Jules travaille`\pause\newline
+
+Deux propositions atomiques\pause\newline
+
+On pose $P \equiv $ Elsa part en vacances et $Q \equiv $ Jules travaille\pause\newline 
+
+La phrase se traduit alors en $(P \rightarrow Q)$ \pause $\equiv (\neg Q \rightarrow \neg P)$
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+
+\titre{Modélisation}
+
+`Jules et Elsa pourront partir en vacances si leur patronne Diane est assassinée`\pause\newline
+
+Trois propositions atomiques\pause\newline
+
+On pose $P \equiv $ Elsa pourra partir en vacances, $Q \equiv $ Jules pourra partir et R $\equiv$ Diane est assassinée \pause\newline 
+
+La phrase se traduit alors en $(R \rightarrow (P \wedge Q))$\newline\pause
+
+En effet, la phrase dit que l'assassinat de Diane est une \textbf{condition suffisante} (mais pas forcément nécessaire !) au départ en vacances de Jules et Elsa 
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+
+\titre{Modélisation}
+
+`Jules et Elsa \textbf{ne} pourront partir en vacances \textbf{que} si leur patronne Diane est assassinée`\pause\newline
+
+On pose $P \equiv $ Elsa pourra partir en vacances, $Q \equiv $ Jules pourra partir et R $\equiv$ Diane est assassinée \pause\newline 
+
+Une tentation : $((P \wedge Q) \leftrightarrow R)$\pause\newline 
+
+Ca ne marche pas, car il n'y a pas \textbf{équivalence} : ce n'est pas parce que Diane est assassinée que Jules et Elsa peuvent partir en vacances. \pause Exemple : `En France, on ne peut voter que si on a au moins 18 ans`. C'est vrai, mais c'est pas pour autant que toute personne d'au moins 18 ans peut voter. \textbf{C'est une condition nécessaire mais pas suffisante}
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+
+\titre{Modélisation}
+
+`Jules et Elsa \textbf{ne} pourront partir en vacances \textbf{que} si leur patronne Diane est assassinée`\newline
+
+On pose $P \equiv $ Elsa pourra partir en vacances, $Q \equiv $ Jules pourra partir et R $\equiv$ Diane est assassinée \pause\newline 
+
+La phrase se traduit alors en $((P \wedge Q) \rightarrow R)$\pause ... ou $((P \vee Q) \rightarrow R )$\pause\newline
+
+En effet, il n'est pas clair si Jules et Elsa seront empêchés \textbf{collectivement} ou \textbf{individuellement} d'aller en vacances tant que Diane n'aura pas été assassinée (Dans le cas où $P = 1, Q = 0$ et $R = 0$, la première proposition sera vraie mais pas la deuxième)
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+
+\titre{Modélisation}
+
+`Jules et Elsa \textbf{ne} pourront partir en vacances \textbf{que} si leur patronne Diane est assassinée`\newline
+
+La phrase se traduit alors en $((P \wedge Q) \rightarrow R)$ ... ou $((P \vee Q) \rightarrow R )$\newline
+
+De plus, il faudrait rajouter l'information, présente dans la phrase originale, que Diane est la patronne de Jules et Elsa\newline\pause
+
+On introduit donc $S / U \equiv$ Diane est la patrone de $Jules / Elsa$, et on obtient $(\phi \wedge (S \wedge U))$, où $\phi$ est la traduction choisie plus haut\newline
+
+\textcolor{white}{On introduit donc $S / U \equiv$ est la patrone de $Jules / Elsa$, .}
+
+\end{frame}
+
+
+%----------------------------------------
+
+\begin{frame}
+
+\titre{Modélisation}
+
+`Jules ira au cinéma ou à la piscine, à pied ou en vélo`\pause\newline
+
+La tentation : $P \equiv $ Jules ira au ciné, $Q \equiv $ Jules ira à la piscine, R $\equiv$ Jules ira à pied et S $\equiv$ Jules ira en vélo (ou un truc comme ça)\pause\newline 
+
+Le problème, c'est que R et S ne sont pas des propositions (elles ne peuvent pas exister par elles-mêmes). \pause Une alternative serait `Jules se déplace (toujours) à pied / en vélo`, mais c'est  beaucoup plus \textit{fort} que ce qu'exprime la phrase initiale
+
+
+\end{frame}
+
+%----------------------------------------
+\begin{frame}
+
+\titre{Modélisation}
+
+`Jules ira au cinéma ou à la piscine, à pied ou en vélo`\pause\newline
+
+C'est un peu moche et bourrin, mais la seule solution (solide) est de poser $P \equiv $ Jules ira au ciné à pied, $Q \equiv $ Jules ira au ciné en vélo, R $\equiv$ Jules ira à la piscine à pied et S $\equiv$ Jules ira au ciné en vélo\pause\newline
+
+La phrase se traduit alors en $P \vee Q \vee R \vee S$ (parenthèses à la carte)
+\vspace{0.48cm}
+
+\end{frame}
+
+%----------------------------------------
+
+\begin{frame}
+
+\titre{Modélisation}
+
+`Parmi Diane, Elsa, Jules et Jess se trouvent au moins 3 futurs linguistes`\pause\newline
+
+\only<1-4>{Soient $D \equiv $ Diane deviendra linguiste, $E \equiv $ Elsa deviendra linguiste, J $\equiv$ Jules deviendra linguiste et S $\equiv$ Jess deviendra linguiste\pause\newline}
+
+La phrase se traduit alors en \pause $(D \wedge E \wedge J) \vee (D \wedge E \wedge S) \vee (D \wedge J \wedge S) \vee (E \wedge J \wedge S) $\pause\newline
+
+\only<1-4>{Notez qu'on n'a pas besoin d'expliciter le cas où les 4 sont linguistes, puisqu'il est déjà rendu vrai par la proposition initiale ($E \wedge J \wedge S$ n'impose pas que Diane ne deviendra pas une linguiste par ex)}
+\pause
+
+\appearsAt{5}{black}{La phrase originale et la propositions sont vraies dans les mêmes conditions (cad qu'elles ont le même sens), mais la traduction est encore moins directe que dans les exemples précédents}\newline
+
+
+\appearsAt{5}{black}{
+D'une certaine façon, on peut donc bien traduire la phrase en logique prop, mais on sent qu'on touche aux limites du formalisme}
+\end{frame}
+
+%----------------------------------------
+
+
+\begin{frame}
+
+\titre{Modélisation}
+
+`Aucun MIASH n'est en vacances`\newline
+
+\only<1-6>{La phrase se traduit alors en \pause pas grand chose\pause\newline
+
+Comme on vient de l'entrevoir avec l'exemple précédent, la logique propositionnelle c'est pas la folie pour modéliser des propositions quantifiées. \pause Mais là aussi, on peut essayer de ruser (même si c'est encore plus tordu)\pause\newline
+
+Si on peut ordonner les individus en MIASH en $p_1$, $p_2$, \dots, $p_n$, alors on pose $P_i \equiv p_i$ est en vacances\newline\pause}
+
+La phrase se traduit alors en $\neg P_1 \wedge \neg P_2 \wedge \dots \wedge \neg P_n$$ = \bigwedge_{1 \leq i \leq n,} \neg P_i$\newline
+
+\appearsAt{7}{black}{C'est quand même un peu de la triche : on ne donne pas une proposition, mais une \textit{recette} (ou un algorithme) pour générer une proposition représentant la phrase étant donné un ensemble \textbf{\underline{fini}} de MIASHs}
+
+\only<7>{\vspace{3cm}}
+
+\end{frame}
+
+%----------------------------------------
+
+
+

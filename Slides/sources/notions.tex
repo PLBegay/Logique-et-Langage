@@ -1,0 +1,395 @@
+
+
+
+
+%
+%\begin{frame}
+%	\titre{Notions de base}
+% 
+%	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+%		 \setlength\itemsep{1.4em}
+%
+%		\item[Raisonnement] Le raisonnement \pause
+%		\item[Sens] L'expression formelle des hypothèses et conclusions\pause
+%		\item[] Cette façon de s'exprimer forme un langage\pause
+%		\item[Langage] Les correspondances entre ce langage et celui du quotidien, dit naturel
+%
+%
+%	\end{description}
+%
+%
+%\end{frame}
+
+%
+%\begin{frame}
+%	\titre{Notions de base}
+%	
+%	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+%		 \setlength\itemsep{1.4em}
+%
+%		\item[Logique] \only<1>{?} \only<2>{Etude du raisonnement ?} \only<3->{Etude des \textbf{inférences}} \pause \pause
+%\pause
+%		\item[Inférence]  Dériver une \textbf{conclusion} à partir de \textbf{prémisses} vraies \pause ou supposées vraies \pause
+%
+%		\item[] Processus naturel et psychologique \pause
+%		\item[] mais pas l'objet d'étude des logiciens (et linguistes) \pause
+%		\item[Plutôt] la façon dont \textbf{s'expriment} les raisonnements \pause : on va s'intéresser à leur \textbf{forme}.
+%
+%
+%	\end{description}
+%
+%
+%\end{frame}
+
+%
+%\begin{frame}
+%	\titre{Notions de base}
+%	
+%	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+%		 \setlength\itemsep{1.4em}
+%
+%		\item[Logique] Etude des propriétés formelles des inférences correctes \pause
+%		\item[]
+%
+%	\end{description}
+%
+%
+%\end{frame}
+
+
+\begin{frame}
+	\titre{Notions de base : inférence}
+	
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}	
+
+		\item[définition] Dérivation une \textbf{conclusion} à partir de \textbf{prémisses} vraies \pause ou supposées vraies \pause
+
+	\item[Remarque] Un raisonnement est une ou plusieurs inférences imbriquées
+	
+	\end{description}
+\end{frame}
+
+
+\begin{frame}
+	\titre{Notions de base : syllogisme}
+	
+	\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+		 \setlength\itemsep{1.4em}
+
+
+		\item[définition] Mise en forme d'une inférence\pause
+
+	\item[Exemples] 
+\begin{tabular}{l}
+Je pense\\\hline Je suis\\ 
+\end{tabular}
+
+\pause
+\item[] \begin{tabular}{l}
+Tous les canards boitent\\José est un canard\\\hline José boite\\ 
+\end{tabular}
+
+\pause
+%\item[] \begin{tabular}{l}
+%Tous les hommes sont mortels\\Les mortes sont désespérés\\Les désespérés font des bêtises\\Rouler sans permis est une bêtise\\\hline Il y a des hommes qui roulent sans permis\\ 
+%\end{tabular}
+\item[] \begin{tabular}{l}
+Nulle chaise ne respire\\Tout Homme respire\\\hline Aucun Homme n'est une chaise\\ 
+\end{tabular}
+
+	\end{description}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Notions de base : syllogistique}
+	\only<1>{Etude des syllogismes}
+%\pause
+	%\only<2>{\includegraphics[scale=0.083]{silog.JPG}}
+	
+\end{frame}
+
+\begin{frame}
+	\titre{Notions de base : application}
+	
+\begin{tabular}{lr}
+Tous les canards boitent & \hspace{2cm} prémisse numéro 1 \\
+José est un canard & prémisse numéro 2 \\ \cline{1-1}
+ José boite & conclusion\\ \\ \\
+\end{tabular}
+
+\pause
+
+Ce syllogisme vous semble-t'il \textit{raisonnable} ? \pause \newline 
+
+Normalement oui \pause : on va du général au spécifique% en \textit{appliquant} la première prémisse avec José, ce qu'on a le droit de faire grâce à la deuxième \newline \pause
+
+%Analogie avec, par exemple, $f(x) = 3\times x + 2$, donc $f(5) = 17$
+
+%
+%\begin{description}[labelindent=6pt,style=multiline,leftmargin=1.3in]
+%		 \setlength\itemsep{1.4em}
+%
+%
+%		\item[Attention] On ne met pas n'importe quoi en prémisse ou conclusion \pause
+%		\item[] On met des \textbf{propositions} \pause
+%		\item[] Une expression qu'on peut considérer comme \textbf{vraie} ou \textbf{fausse}
+%
+%
+%	\end{description}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Notions de base : application bis}
+	
+\begin{tabular}{lr}
+Tous les canards boitent & \hspace{2cm} prémisse numéro 1 \\ \cline{1-1}
+ Jean-Michel boite & conclusion\\ \\ \\
+\end{tabular}
+
+\pause
+
+Ce syllogisme vous semble-t'il \textit{raisonnable} ? \pause \newline 
+
+Normalement non \pause : la prémisse 1 est un \textit{contrat} : si tu me \textit{garantis} qu'un objet $x$ est un \textit{canard}, je te garantis qu'il boite.\newline \pause
+
+Il nous manque ici l'information, assertée par une prémisse, que Jean-Michel est un canard \pause \newline
+
+%C'est comme avoir $f(x) = 3\times x + 2$ et essayer de calculer $f(patate)$ \pause \newline
+
+Analogie avec les types en programmation ($int \rightarrow int$)
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Notions de base : exclusivité}
+	%TODO : rajouter une slide pour discuter de ce que recouvre ou non `Homme'
+	%ie. vivant ou non (définition précise des termes, tout ça tout ça)
+\begin{tabular}{lr}
+Aucune chaise ne respire& \hspace{1cm} prémisse numéro 1 \\ 
+Tout être humain respire & prémisse numéro 2 \\ \cline{1-1}
+Aucun être humain n'est une chaise & conclusion\\ \\ \\
+\end{tabular}
+
+\pause
+
+Ce syllogisme vous semble-t'il \textit{raisonnable} ? \pause \newline 
+
+Normalement oui \pause : la prémisse 1 dit qu'être une chaise et respirer sont deux propriétés incompatibles (ou mutuellement exclusives)\newline \pause
+
+La prémisse 2 dit que les Hommes respirent, et donc qu'ils ont `fait leur choix` entre les deux propriétés
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Notions de base : validité vs. vérité}
+	
+\begin{tabular}{lr}
+Aucun enfant ne respire& \hspace{1cm} prémisse numéro 1 \\ 
+Tout être humain respire & prémisse numéro 2 \\ \cline{1-1}
+Aucun être humain n'est un enfant& conclusion\\ \\ \\
+\end{tabular}
+
+\pause
+
+Ce syllogisme vous semble-t'il \only<2-6>{\textit{raisonnable}} \only<7>{\textbf{valide}} ? \pause \newline 
+
+Normalement oui \pause : au niveau du raisonnement, c'est complètement équivalent (ou isomorphe) à l'exemple précédent \newline \pause
+
+On suppose \textbf{toujours} les prémisses vraies\newline \pause
+
+`Dans un monde où toutes les prémisses sont vraies, puis-je affirmer de façon raisonnable la conclusion ? ` \pause
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Notions de base : rigueur}
+	
+\begin{tabular}{lr}
+L'immense majorité des canards boite & \hspace{1cm} prémisse numéro 1 \\ 
+Jean-Claude est un canard & prémisse numéro 2 \\ \cline{1-1}
+Jean-Claude boite & conclusion\\ \\ \\
+\end{tabular}
+
+\pause
+
+Ce syllogisme vous semble-t'il \textbf{valide} ? \pause \newline 
+
+Normalement non \pause : on doit toujours \textit{chercher la petite bête}\newline \pause
+
+`Dans un monde où l'ensemble des prémisses est vrai, puis-je affirmer \only<5>{de façon raisonnable} \only<6->{\textbf{de façon \underline{certaine}}} la conclusion ? ` \newline \pause \pause 
+
+La logique, c'est (aussi) l'art d'être chiant
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Notions de base : abstraction}
+	
+\begin{tabular}{lr}
+Je pense & \hspace{2cm} prémisse numéro 1 \\ \cline{1-1}
+ Je suis & conclusion\\ \\ \\
+\end{tabular}
+
+\pause
+
+Ce syllogisme vous semble-t'il \textbf{valide} ? \pause \newline 
+
+Normalement non \pause : aucun lien formel entre la prémisse et la conclusion\newline \pause
+
+On va chercher un système \textbf{abstrait} \pause et \textbf{minimal} (voire fini)  \newline \pause
+
+\only<1-6>{\begin{tabular}{l}
+\textcolor{white}{Tous les canards boitent}\\\textcolor{white}{José est un canard}\\\textcolor{white}{José boite}\\ 
+\end{tabular}}
+\only<7>{\begin{tabular}{l}
+Tous les canards boitent\\José est un canard\\\hline José boite\\ 
+\end{tabular}}
+\pause
+\only<8>{\begin{tabular}{l}
+Tous les canards ont la propriété de boiter\\José est un canard\\\hline José a la propriété de boiter\\ 
+\end{tabular}}
+\pause
+\only<9>{\begin{tabular}{l}
+Tous les X ont la propriété Y\\
+Z est un X\\ \cline{1-1}
+Z a la propriété Y\\
+\end{tabular}}
+\end{frame}
+
+% ajouts sur l'abstraction
+% -----------------------------------
+
+
+\begin{frame}
+	\titre{Notions de base : abstraction}
+	
+Cette recherche d'abstraction est le prolongement naturel de la distinction qu'on a faite entre \textbf{vérité} (dont on se fiche) et \textbf{validité} (qu'on cherche à \textit{formaliser}, c'est à dire qu'on veut décrire intégralement à l'aide d'un ensemble fini de règles) \pause \newline 
+
+L'idée, c'est d'avoir des principes \textbf{généraux}, qui marcheront même dans le plus bizarre des mondes, puis de les appliquer à (ou instancier avec) un monde en particulier qui contiendra plein de règles comme \newline `ne pas valider LL $\rightarrow$ ne pas valider son année` \pause \newline 
+
+Cette phrase n'est pas très chouette, peut-on la reformuler de façon \textbf{équivalente} mais moins négative ?
+
+\end{frame}
+
+\begin{frame}
+	\titre{Notions de base : abstraction}
+	
+L'idée que les \textit{règles particulières} de \textbf{notre} monde sont à distinguer de certaines règles plus fondamentales, ou universelles, préfigure le \textbf{générativisme}. \newline \pause
+
+La linguistique générative est une théorie portée par Noam Chomsky (et ses camarades) à partir des années 50 qui postule une structure commune à toutes les langues. \newline \pause
+
+Intuitivement, il existe (selon eux) une langue abstraite qui contient par exemple la notion de sujet / verbe / complément qui est ensuite \textit{instanciée} en français, anglais, coréen, turque etc... avec à chaque fois différents paramètres (vocabulaire, ordre SVO etc...)
+
+
+\end{frame}
+
+
+\begin{frame}
+	\titre{Notions de base : abstraction}
+	\pause
+Une analogie expérimentale : \pause Fortnite vs. PUBG \newline \pause
+	
+Les deux jeux, ainsi que les $1329$ autres du genre, diffèrent dans leurs directions artistiques, armes, \textit{maps} etc\pause, mais ces différences sont transcendées par un ADN de base, ou le genre donc, c'est à dire les grands principes (Une île, 100 clampins, une zone qui se réduit, etc) \newline \pause
+
+On peut séparer les `grandes règles`, qui distinguent le \textit{Battle royale} d'autres genre de jeux, des spécificités de chaque BR qui les distinguent les uns des autres. \newline \pause
+
+Même différence entre l'étude des \textbf{langues} \pause et du \textbf{langage}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Notions de base : abstraction}
+
+En effet, la communication repose sur une longue \textit{chaine de production}, qui part de l'idée abstraite qu'on veut exprimer et débouche sur une suite de sons (si on est à l'oral).\pause \newline
+
+En gros, on construit d'abord le \textit{sens} précis de l'idée (c'est la \textbf{sémantique}), on traduit ce sens en structure de phrase (c'est la \textbf{syntaxe}), on calcule la suite de sons qui correspond à cette phrase (c'est la \textbf{phonologie}) et on effectue les mouvements articulatoires correspondant (c'est la \textbf{phonétique}).\newline
+
+
+\end{frame}
+
+\begin{frame}
+	\titre{Notions de base : abstraction}
+
+C'est une vision extrêmement simplifiée, mais qui permet d'entrevoir la diversité des processus en jeu pour simplement parler.\pause \newline
+
+Chaque processus étant en soi extrêmement complexe, il est raisonnable de les étudier séparément. Par exemple, le raisonnement fait partie du \textit{sens} \pause(même si on peut l'observer - notamment - via la syntaxe !).\pause \newline
+
+Clairement, la syntaxe et (surtout) la phonétique et la phonologie dépendent de la langue utilisée, mais est-ce le cas de la sémantique ?
+
+
+\end{frame}
+
+
+
+\begin{frame}
+	\titre{Notions de base : abstraction}
+
+Ca rejoint l'Hypothèse de Sapir-Whorf\footnote{dont vous avez peut-être entendu parler dans l'excellent film `Premier contact` / `\textit{Arrival}`}, selon laquelle notre vision du monde dépend directement de notre langue. \pause \newline
+
+La question n'est évidemment pas résolue (ni très clairement posée). \pause \newline
+
+Voir cependant le cas très particulier du Pirahã, et de sa relation avec le générativisme et Sapir-Whorf (\textcolor{blue}{\href{http://cpc.cx/khG}{ici}} pour commencer).
+
+\end{frame}
+
+\begin{frame}
+	\titre{Notions de base : abstraction}
+\only<1->{\textcolor{white}{Olala ligne cachée} \newline}
+BREF \pause \newline
+	
+En syllogistique, tous les mots pas \textit{fonctionnels} (tout ce qui n'est pas `tout`, `aucun`, `est`, `ne pas` etc) sont à considérer comme des variables. \newline 
+
+
+\only<1-2>{
+\textcolor{white}{\begin{tabular}{l}
+Tout ce qui est rare est cher\\José arrose la route\\\hline La route est mouillée\\ 
+\end{tabular}}
+\textcolor{white}{discret saut à la ligne}\newline
+
+\textcolor{white}{Ca, c'est ok du point de vue de la syllogistique parce qu'on considère `être bon marché` et `être rare` comme deux propriétés lambdas}
+}
+
+\pause
+\only<3>{\begin{tabular}{l}
+\textcolor{white}{Tout ce qui est rare est cher}\\\textcolor{black}{José arrose la route}\\\hline \textcolor{black}{La route est mouillée}\\ 
+\end{tabular}
+\textcolor{white}{discret saut à la ligne}\newline
+
+\textcolor{white}{Ca, c'est ok du point de vue de la syllogistique parce qu'on considère `être bon marché` et `être rare` comme deux propriétés lambdas}
+}
+
+\pause
+\only<4>{\begin{tabular}{l}
+\textcolor{white}{Tout ce qui est rare est cher}\\X effectue l'action Y sur Z\\\hline Z est R\\ 
+\end{tabular}
+\textcolor{white}{discret saut à la ligne} \newline
+
+\textcolor{white}{Ca, c'est ok du point de vue de la syllogistique parce qu'on considère `être bon marché` et `être rare` comme deux propriétés lambdas}
+}
+
+
+\pause
+\only<5->{
+\begin{tabular}{l}
+Tout ce qui est rare est cher\\Un cheval bon marché est rare\\\hline Un cheval bon marché est cher\\ 
+\end{tabular}
+\pause
+\textcolor{white}{discret saut à la ligne} \newline
+
+Ca, c'est ok du point de vue de la syllogistique parce qu'on considère `être bon marché` et `être rare` comme deux propriétés lambdas
+}
+
+\end{frame}

@@ -1,0 +1,81 @@
+\documentclass[12pt,a4paper]{beamer}
+
+\usepackage[beamer,french]{chetor}
+\usepackage[normalem]{ulem}
+\input{apalike}
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{tikz-qtree-compat}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage{amssymb}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage{CJKutf8}
+\newcommand{\textoverline}{$\overline{\mbox{\phantom{L}}}$}
+\usepackage{amsthm} 
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{tikz-qtree-compat}
+\usepackage{enumitem}% http://ctan.org/pkg/enumitem
+\definecolor{lol}{RGB}{51,38,128}
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+\setlist[description]{%
+%  topsep=30pt,               % space before start / after end of list
+%  itemsep=5pt,               % space between items
+%  font={\bfseries\sffamily}, % set the label font
+  font={\bfseries\sffamily\color{lol}}, % if colour is needed
+}
+
+\newenvironment{scprooftree}[1]%
+   {\gdef\scalefactor{#1}\begin{center}\proofSkipAmount \leavevmode}
+   {\scalebox{\scalefactor}{\DisplayProof}\proofSkipAmount  \end{center} }
+
+
+\newcommand{\backupbegin}{
+   \newcounter{finalframe}
+   \setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \setcounter{framenumber}{\value{finalframe}}
+}
+
+\usepackage{multirow}	
+
+% 1 is time, 2 is color, 3 is content
+\newcommand{\appearsAt}[3]{\newcount\tmp
+\tmp #1\relax
+\advance\tmp -1\relax
+\only<-\tmp>{\textcolor{white}{#3}}\only<#1->{\textcolor{#2}{#3}}}
+
+% 1 is time, 2 is color, 3 is content
+\newcommand{\colorAt}[3]{\newcount\tmp
+\tmp #1\relax
+\advance\tmp -1\relax
+\only<-\tmp>{\textcolor{black}{#3}}\only<#1->{\textcolor{#2}{#3}}}
+
+\title{\color{titlecolor}{Logique et Langage}}
+\author{Pierre-Léo Bégay}
+\date{}
+\institute{Université Paris 7 - département LSH}
+
+
+\begin{document}
+
+	\maketitle
+
+	
+	\input{intro}
+		 
+	\begin{frame} % ITS
+		\titre{Sommaire}
+		\tableofcontents
+	\end{frame}
+	\input{syllog} 
+	\input{prop}
+	\input{deduction}
+	\input{preds}
+
+%\bibliographystyle{apalike}
+
+\end{document}
